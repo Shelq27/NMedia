@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">НМедиа</string>
-    <string name="text_start">НМедиа!</string>
+    <string name="hello">НМедиа!</string>
+    <string name="str_ic_likes">иконка_лайки</string>
+    <string name="str_ic_reposts">иконка_репостов</string>
+    <string name="str_ic_views">иконка_просмотров</string>
 </resources>
