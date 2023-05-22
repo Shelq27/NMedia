@@ -1,4 +1,12 @@
 <resources>
     <string name="app_name">NMedia</string>
-    <string name="text_start">NMedia!</string>
+    <string name="hello">NMedia!</string>
+    <string name="description_post_author_avatar" translatable="false">Аватар автора поста</string>
+    <string name="description_post_menu" translatable="false">Меню поста</string>
+    <string name="str_ic_likes">ic_like</string>
+    <string name="str_ic_reposts">ic_repost</string>
+    <string name="str_ic_views">ic_views</string>
+    <string name="str_number_of_likes" translatable="false">500</string>
+    <string name="str_number_of_views" translatable="false">500</string>
+    <string name="str_number_of_reposts" translatable="false">1K</string>
 </resources>
