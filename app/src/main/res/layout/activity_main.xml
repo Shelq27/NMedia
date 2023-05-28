@@ -8,47 +8,48 @@
     tools:context=".MainActivity">
 
     <ImageView
-        android:id="@+id/avatar"
+        android:id="@+id/AvatarIv"
         android:layout_width="@dimen/posts_avatar_size"
         android:layout_height="@dimen/posts_avatar_size"
         android:layout_marginBottom="@dimen/common_spacing"
         android:contentDescription="@string/description_post_author_avatar"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="@id/barrier"
+        android:src="@drawable/ic_netology_48dp"
+        app:layout_constraintBottom_toBottomOf="@id/barrier_top"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         tools:srcCompat="@sample/posts.json/data/authorAvatar" />
 
+
     <TextView
-        android:id="@+id/author"
+        android:id="@+id/AuthorTv"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/common_spacing"
         android:layout_marginEnd="@dimen/common_spacing"
         android:ellipsize="end"
         android:singleLine="true"
+        app:layout_constraintBottom_toTopOf="@+id/PublishedTv"
+        app:layout_constraintEnd_toStartOf="@id/MenuIb"
+        app:layout_constraintStart_toEndOf="@id/AvatarIv"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/published"
-        app:layout_constraintEnd_toStartOf="@id/menu"
-        app:layout_constraintStart_toEndOf="@id/avatar"
         app:layout_constraintVertical_chainStyle="packed"
-        tools:text="@sample/posts.json/data/author"
-        />
+        tools:text="@sample/posts.json/data/author" />
 
     <TextView
-        android:id="@+id/published"
+        android:id="@+id/PublishedTv"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/common_spacing"
         android:layout_marginEnd="@dimen/common_spacing"
         android:layout_marginBottom="@dimen/common_spacing"
-        app:layout_constraintTop_toBottomOf="@id/author"
-        app:layout_constraintBottom_toBottomOf="@id/barrier"
-        app:layout_constraintEnd_toStartOf="@id/menu"
-        app:layout_constraintStart_toEndOf="@id/avatar"
+        app:layout_constraintBottom_toBottomOf="@id/barrier_top"
+        app:layout_constraintEnd_toStartOf="@id/MenuIb"
+        app:layout_constraintStart_toEndOf="@id/AvatarIv"
+        app:layout_constraintTop_toBottomOf="@id/AuthorTv"
         tools:text="@sample/posts.json/data/published" />
 
     <ImageButton
-        android:id="@+id/menu"
+        android:id="@+id/MenuIb"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/common_spacing"
@@ -59,102 +60,97 @@
         app:srcCompat="@drawable/ic_more_vert_24" />
 
     <androidx.constraintlayout.widget.Barrier
-        android:id="@+id/barrier"
+        android:id="@+id/barrier_top"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:barrierDirection="bottom"
-        app:constraint_referenced_ids="avatar,published,menu"
-        />
+        app:constraint_referenced_ids="AvatarIv,PublishedTv,MenuIb" />
 
     <TextView
-        android:id="@+id/content"
+        android:id="@+id/ContentTv"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/common_spacing"
         android:autoLink="web"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/barrier"
+        app:layout_constraintTop_toBottomOf="@id/barrier_top"
         tools:text="@sample/posts.json/data/content" />
+
     <androidx.constraintlayout.widget.Barrier
         android:id="@+id/barrier_middle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:barrierDirection="bottom"
-        app:constraint_referenced_ids="content"
-        />
+        app:constraint_referenced_ids="ContentTv" />
 
     <ImageButton
-        android:id="@+id/ib_repost"
+        android:id="@+id/RepostIb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/spacing_8dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:contentDescription="@string/str_ic_likes"
-        tools:srcCompat="@drawable/ic_repost"
-        android:background="@android:color/transparent"
-        app:layout_constraintStart_toEndOf="@id/tv_number_of_likes"
-        app:layout_constraintTop_toBottomOf="@id/barrier_middle"
         android:layout_marginTop="@dimen/common_spacing"
-        />
-    <ImageButton
-        android:id="@+id/ib_views"
-        android:layout_marginEnd="@dimen/spacing_8dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:contentDescription="@string/str_ic_likes"
-        tools:srcCompat="@drawable/ic_views"
         android:background="@android:color/transparent"
-        app:layout_constraintEnd_toStartOf="@id/tv_number_of_views"
+        android:contentDescription="@string/str_ic_likes"
+        app:layout_constraintStart_toEndOf="@id/NumberOfLikesTv"
         app:layout_constraintTop_toBottomOf="@id/barrier_middle"
-        android:layout_marginTop="@dimen/common_spacing"
-        />
+        app:srcCompat="@drawable/ic_repost" />
 
     <ImageButton
-        android:id="@+id/ib_like"
+        android:id="@+id/ViewsIv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:contentDescription="@string/str_ic_likes"
-        tools:srcCompat="@drawable/ic_like"
+        android:layout_marginTop="@dimen/common_spacing"
+        android:layout_marginEnd="@dimen/spacing_8dp"
         android:background="@android:color/transparent"
+        android:contentDescription="@string/str_ic_likes"
+        app:layout_constraintEnd_toStartOf="@id/NumberOfViewsTv"
+        app:layout_constraintTop_toBottomOf="@id/barrier_middle"
+        app:srcCompat="@drawable/ic_views" />
+
+    <ImageButton
+        android:id="@+id/LikeIb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/common_spacing"
+        android:background="@android:color/transparent"
+        android:contentDescription="@string/str_ic_likes"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/barrier_middle"
-        android:layout_marginTop="@dimen/common_spacing"
-        />
-    <TextView
-        android:id="@+id/tv_number_of_likes"
-        android:layout_marginStart="@dimen/spacing_8dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toEndOf="@id/ib_like"
-        app:layout_constraintTop_toTopOf="@id/ib_like"
-        app:layout_constraintBottom_toBottomOf="@id/ib_like"
-        android:text="@string/str_number_of_likes"
-        android:maxLength="4"
-        />
-    <TextView
-        android:id="@+id/tv_number_of_reposts"
-        android:layout_marginStart="@dimen/spacing_8dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toEndOf="@id/ib_repost"
-        app:layout_constraintTop_toTopOf="@id/ib_repost"
-        app:layout_constraintBottom_toBottomOf="@id/ib_repost"
-        android:text="@string/str_number_of_reposts"
-        android:maxLength="4"
-        />
+        app:srcCompat="@drawable/ic_like" />
 
     <TextView
-        android:id="@+id/tv_number_of_views"
+        android:id="@+id/NumberOfLikesTv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/spacing_8dp"
+        android:maxLength="6"
+        android:text="@string/str_number_of_likes"
+        app:layout_constraintBottom_toBottomOf="@id/LikeIb"
+        app:layout_constraintStart_toEndOf="@id/LikeIb"
+        app:layout_constraintTop_toTopOf="@id/LikeIb" />
+
+    <TextView
+        android:id="@+id/NumberOfRepostsTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/spacing_8dp"
+        android:maxLength="4"
+        android:text="@string/str_number_of_reposts"
+        app:layout_constraintBottom_toBottomOf="@id/RepostIb"
+        app:layout_constraintStart_toEndOf="@id/RepostIb"
+        app:layout_constraintTop_toTopOf="@id/RepostIb" />
+
+    <TextView
+        android:id="@+id/NumberOfViewsTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxLength="4"
         android:text="@string/str_number_of_views"
-        app:layout_constraintTop_toTopOf="@id/ib_views"
-        app:layout_constraintBottom_toBottomOf="@id/ib_views"
+        app:layout_constraintBottom_toBottomOf="@id/ViewsIv"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/barrier_middle"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="16dp"
-        android:maxLength="4"/>
+        app:layout_constraintTop_toTopOf="@id/ViewsIv" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
