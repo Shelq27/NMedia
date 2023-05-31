@@ -3,10 +3,10 @@ package ru.netology.nmedia
 import android.annotation.SuppressLint
 import android.icu.text.DecimalFormat
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import ru.netology.nmedia.databinding.ActivityMainBinding
 import ru.netology.nmedia.dto.Post
-import java.math.BigDecimal
 import java.math.RoundingMode
 import kotlin.math.floor
 import kotlin.math.log10
@@ -40,6 +40,7 @@ class MainActivity : AppCompatActivity() {
             NumberOfRepostsTv.text = prettyCount(post.reposted)
             statusLike(post, binding)
             binding.LikeIb.setOnClickListener {
+
                 post.likedByMe = !post.likedByMe
                 if (statusLike(post, binding)) {
                     post.likes++
@@ -48,13 +49,12 @@ class MainActivity : AppCompatActivity() {
                 }
                 NumberOfLikesTv.text = prettyCount(post.likes)
             }
-            binding.RepostIb.setOnClickListener{
-                    post.reposted++
-                NumberOfRepostsTv.text= prettyCount(post.reposted)
+            binding.RepostIb.setOnClickListener {
+                post.reposted++
+                NumberOfRepostsTv.text = prettyCount(post.reposted)
             }
         }
     }
-
 }
 
 fun statusLike(post: Post, binding: ActivityMainBinding): Boolean {
@@ -66,25 +66,23 @@ fun statusLike(post: Post, binding: ActivityMainBinding): Boolean {
         false
     }
 }
+//  не дает компилировать ошибка "Type mismatch"
+//fun prettyCount(numb : Int): String? {
+//    val value = floor(log10(numb.toDouble())).toInt()
+//    return when {
+//        value < 3 -> numb.toString() // < 1000
+//        value < 4 -> DecimalFormat("#.#").apply { roundingMode=RoundingMode.FLOOR }.format(numb.toDouble() / 1000) + "K" // < 10_000
+//        value < 6 -> DecimalFormat("#").apply { roundingMode=RoundingMode.FLOOR }.format(numb.toDouble() / 1000) + "K" // < 1_000_000
+//        else -> DecimalFormat("#.#").apply { roundingMode=RoundingMode.FLOOR }.format(numb.toDouble() / 1_000_000) + "M"
+//    }
+//}
 
-fun prettyCount(numb : Int): String? {
-    val suffix = charArrayOf(' ', 'K', 'M', 'B', 'T', 'P', 'E')
-    val numValue = numb.toLong()
-    val value = floor(log10(numValue.toDouble())).toInt()
-    val base = value / 3
-
-
-    return if (value >= 3 && base < suffix.size && (numValue.toInt() % 1000 != 0)) {
-        DecimalFormat("#.#").format(
-            numValue / 10.0.pow((base * 3).toDouble())
-        ) + suffix[base]
-    } else if (value >= 3 && base < suffix.size && (numValue.toInt() % 1000 == 0) && numb <= 1000000) {
-
-        DecimalFormat("#").format(
-            numValue / 10.0.pow((base * 3).toDouble())
-        ) + suffix[base]
-
-    } else {
-        DecimalFormat("#,##").format(numValue)
+fun prettyCount(numb: Int): String? {
+    val value = floor(log10(numb.toDouble())).toInt()
+    return when {
+        value < 3 -> numb.toString() // < 1000
+        value < 4 -> DecimalFormat("#.#").format(numb.toDouble() / 1000) + "K" // < 10_000
+        value < 6 -> DecimalFormat("#").format(numb.toDouble() / 1000) + "K" // < 1_000_000
+        else -> DecimalFormat("#.#").format(numb.toDouble() / 1_000_000) + "M"
     }
 }
