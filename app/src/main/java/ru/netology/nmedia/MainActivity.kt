@@ -1,16 +1,15 @@
 package ru.netology.nmedia
 
 import android.annotation.SuppressLint
-import android.icu.text.DecimalFormat
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import ru.netology.nmedia.databinding.ActivityMainBinding
 import ru.netology.nmedia.dto.Post
 import java.math.RoundingMode
+import java.text.DecimalFormat
 import kotlin.math.floor
 import kotlin.math.log10
-import kotlin.math.pow
+
 
 
 @SuppressLint("StaticFieldLeak")
@@ -66,23 +65,14 @@ fun statusLike(post: Post, binding: ActivityMainBinding): Boolean {
         false
     }
 }
-//  не дает компилировать ошибка "Type mismatch"
-//fun prettyCount(numb : Int): String? {
-//    val value = floor(log10(numb.toDouble())).toInt()
-//    return when {
-//        value < 3 -> numb.toString() // < 1000
-//        value < 4 -> DecimalFormat("#.#").apply { roundingMode=RoundingMode.FLOOR }.format(numb.toDouble() / 1000) + "K" // < 10_000
-//        value < 6 -> DecimalFormat("#").apply { roundingMode=RoundingMode.FLOOR }.format(numb.toDouble() / 1000) + "K" // < 1_000_000
-//        else -> DecimalFormat("#.#").apply { roundingMode=RoundingMode.FLOOR }.format(numb.toDouble() / 1_000_000) + "M"
-//    }
-//}
-
-fun prettyCount(numb: Int): String? {
+fun prettyCount(numb : Int): String? {
     val value = floor(log10(numb.toDouble())).toInt()
     return when {
         value < 3 -> numb.toString() // < 1000
-        value < 4 -> DecimalFormat("#.#").format(numb.toDouble() / 1000) + "K" // < 10_000
-        value < 6 -> DecimalFormat("#").format(numb.toDouble() / 1000) + "K" // < 1_000_000
-        else -> DecimalFormat("#.#").format(numb.toDouble() / 1_000_000) + "M"
+        value < 4 -> DecimalFormat("#.#").apply { roundingMode=RoundingMode.FLOOR }.format(numb.toDouble() / 1000) + "K" // < 10_000
+        value < 6 -> DecimalFormat("#").apply { roundingMode=RoundingMode.FLOOR }.format(numb.toDouble() / 1000) + "K" // < 1_000_000
+        else -> DecimalFormat("#.#").apply { roundingMode=RoundingMode.FLOOR }.format(numb.toDouble() / 1_000_000) + "M"
     }
 }
+
+
