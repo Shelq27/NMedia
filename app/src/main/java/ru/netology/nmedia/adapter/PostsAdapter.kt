@@ -39,7 +39,7 @@ class PostsAdapter(
 
 
 class PostViewHolder(
-    private val binding: CardPostBinding, private val onIntercationListener: OnInteractionListener
+    private val binding: CardPostBinding, private val onInteraсtionListener: OnInteractionListener
 ) : RecyclerView.ViewHolder(binding.root) {
     fun bind(post: Post) {
         binding.apply {
@@ -52,10 +52,10 @@ class PostViewHolder(
                 if (post.likedByMe) R.drawable.ic_liked else R.drawable.ic_like
             )
             LikeIb.setOnClickListener {
-                onIntercationListener.onLike(post)
+                onInteraсtionListener.onLike(post)
             }
             RepostIb.setOnClickListener {
-                onIntercationListener.onRepost(post)
+                onInteraсtionListener.onRepost(post)
             }
             MenuIb.setOnClickListener {
                 PopupMenu(it.context, it).apply {
@@ -63,12 +63,12 @@ class PostViewHolder(
                     setOnMenuItemClickListener { item ->
                         when (item.itemId) {
                             R.id.remove -> {
-                                onIntercationListener.onRemove(post)
+                                onInteraсtionListener.onRemove(post)
                                 true
                             }
 
                             R.id.edit -> {
-                                onIntercationListener.onEdit(post)
+                                onInteraсtionListener.onEdit(post)
                                 true
                             }
 
