@@ -91,7 +91,7 @@
         android:layout_marginStart="@dimen/spacing_8dp"
         android:layout_marginTop="@dimen/common_spacing"
         android:background="@android:color/transparent"
-        android:contentDescription="@string/str_ic_likes"
+        android:contentDescription="@string/str_ic_reposts"
         app:layout_constraintStart_toEndOf="@id/NumberOfLikesTv"
         app:layout_constraintTop_toBottomOf="@id/barrier_middle"
         app:srcCompat="@drawable/ic_repost" />
@@ -103,7 +103,7 @@
         android:layout_marginTop="@dimen/common_spacing"
         android:layout_marginEnd="@dimen/spacing_8dp"
         android:background="@android:color/transparent"
-        android:contentDescription="@string/str_ic_likes"
+        android:contentDescription="@string/str_ic_views"
         app:layout_constraintEnd_toStartOf="@id/NumberOfViewsTv"
         app:layout_constraintTop_toBottomOf="@id/barrier_middle"
         app:srcCompat="@drawable/ic_views" />
