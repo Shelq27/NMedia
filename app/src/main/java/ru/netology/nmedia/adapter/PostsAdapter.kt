@@ -14,9 +14,6 @@ import java.text.DecimalFormat
 import kotlin.math.floor
 import kotlin.math.log10
 
-typealias OnUseListener = (post: Post) -> Unit
-typealias OnRemoveListener = (post: Post) -> Unit
-
 interface OnInteractionListener {
     fun onLike(post: Post)
     fun onRepost(post: Post)
@@ -25,13 +22,13 @@ interface OnInteractionListener {
 }
 
 class PostsAdapter(
-    private val onIntercationListener: OnInteractionListener
+    private val onInteractionListener: OnInteractionListener
 ) : ListAdapter<Post, PostViewHolder>(PostDiffCallback()) {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostViewHolder {
         val binding = CardPostBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return PostViewHolder(binding, onIntercationListener)
+        return PostViewHolder(binding, onInteractionListener)
     }
 
     override fun onBindViewHolder(holder: PostViewHolder, position: Int) {
