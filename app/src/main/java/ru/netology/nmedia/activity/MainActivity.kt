@@ -17,15 +17,13 @@ import ru.netology.nmedia.viewmodel.PostViewModel
 
 
 @SuppressLint("StaticFieldLeak")
-private var _binding: ActivityMainBinding? = null
+private lateinit var binding: ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
-    private val binding: ActivityMainBinding
-        get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        _binding = ActivityMainBinding.inflate(layoutInflater)
+
         setContentView(binding.root)
 
         val viewModel by viewModels<PostViewModel>()
