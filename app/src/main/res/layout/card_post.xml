@@ -48,12 +48,12 @@
         app:layout_constraintTop_toBottomOf="@id/AuthorTv"
         tools:text="@sample/posts.json/data/published" />
 
-    <ImageButton
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/MenuIb"
+        style="@style/Widget.AppTheme.MenuButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/common_spacing"
-        android:background="@android:color/transparent"
         android:contentDescription="@string/description_post_menu"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -84,73 +84,41 @@
         app:barrierDirection="bottom"
         app:constraint_referenced_ids="ContentTv" />
 
-    <ImageButton
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/RepostIb"
+        style="@style/Widget.AppTheme.RepostButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/spacing_8dp"
         android:layout_marginTop="@dimen/common_spacing"
         android:background="@android:color/transparent"
         android:contentDescription="@string/str_ic_reposts"
-        app:layout_constraintStart_toEndOf="@id/NumberOfLikesTv"
+        app:layout_constraintStart_toEndOf="@id/LikeIb"
         app:layout_constraintTop_toBottomOf="@id/barrier_middle"
         app:srcCompat="@drawable/ic_repost" />
 
-    <ImageButton
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/ViewsIv"
+        style="@style/Widget.AppTheme.ViewButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/common_spacing"
-        android:layout_marginEnd="@dimen/spacing_8dp"
         android:background="@android:color/transparent"
         android:contentDescription="@string/str_ic_views"
-        app:layout_constraintEnd_toStartOf="@id/NumberOfViewsTv"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/barrier_middle"
         app:srcCompat="@drawable/ic_views" />
 
-    <ImageButton
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/LikeIb"
+        style="@style/Widget.AppTheme.LikeButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/common_spacing"
-        android:background="@android:color/transparent"
+        android:checkable="true"
         android:contentDescription="@string/str_ic_likes"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/barrier_middle"
-        app:srcCompat="@drawable/ic_like" />
+        app:layout_constraintTop_toBottomOf="@id/barrier_middle" />
 
-    <TextView
-        android:id="@+id/NumberOfLikesTv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/spacing_8dp"
-        android:maxLength="6"
-        android:text="@string/str_number_of_likes"
-        app:layout_constraintBottom_toBottomOf="@id/LikeIb"
-        app:layout_constraintStart_toEndOf="@id/LikeIb"
-        app:layout_constraintTop_toTopOf="@id/LikeIb" />
-
-    <TextView
-        android:id="@+id/NumberOfRepostsTv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/spacing_8dp"
-        android:maxLength="4"
-        android:text="@string/str_number_of_reposts"
-        app:layout_constraintBottom_toBottomOf="@id/RepostIb"
-        app:layout_constraintStart_toEndOf="@id/RepostIb"
-        app:layout_constraintTop_toTopOf="@id/RepostIb" />
-
-    <TextView
-        android:id="@+id/NumberOfViewsTv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:maxLength="4"
-        android:text="@string/str_number_of_views"
-        app:layout_constraintBottom_toBottomOf="@id/ViewsIv"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/barrier_middle"
-        app:layout_constraintTop_toTopOf="@id/ViewsIv" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
