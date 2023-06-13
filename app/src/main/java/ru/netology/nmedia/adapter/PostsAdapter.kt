@@ -46,11 +46,11 @@ class PostViewHolder(
             AuthorTv.text = post.author
             PublishedTv.text = post.published
             ContentTv.text = post.content
-            NumberOfLikesTv.text = prettyCount(post.likes)
-            NumberOfRepostsTv.text = prettyCount(post.reposted)
-            LikeIb.setImageResource(
-                if (post.likedByMe) R.drawable.ic_liked else R.drawable.ic_like
-            )
+
+            LikeIb.isChecked = post.likedByMe
+            LikeIb.text= prettyCount(post.likes)
+            RepostIb.text= prettyCount(post.reposted)
+            ViewsIv.text= prettyCount(post.view)
             LikeIb.setOnClickListener {
                 onInteraсtionListener.onLike(post)
             }
