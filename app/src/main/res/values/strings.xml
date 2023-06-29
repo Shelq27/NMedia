@@ -19,4 +19,10 @@
     <string name="str_number_of_views" translatable="false">0</string>
     <string name="str_ic_edit">Edit icon</string>
     <string name="str_head_edit_post">Edit post</string>
+    <string name="chooser_share_post">Share post</string>
+    <string name="add_post">Add post</string>
+    <string name="save">Save</string>
+    <string name="text_head_edit_tw">Editable post</string>
+    <string name="text_video_ib">There should be a video here</string>
+    <string name="text_play_video_ib">There should be a video launch button here</string>
 </resources>
