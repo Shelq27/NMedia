@@ -8,7 +8,7 @@ import ru.netology.nmedia.repository.PostRepository
 import ru.netology.nmedia.repository.PostRepositoryInMemoryImpl
 
 private val empty = Post(
-    id = 0, content = "", author = "", likes = 0, published = "", reposted = 0, likedByMe = false, video = ""
+    id = 0, content = "", author = "", likes = 0, published = "", reposted = 0, likedByMe = false, video = null
 )
 
 class PostViewModel : ViewModel() {
