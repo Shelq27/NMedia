@@ -13,6 +13,8 @@
         android:layout_height="match_parent"
         android:background="@android:color/transparent"
         android:inputType="textMultiLine"
+        android:textAlignment="textStart"
+        android:gravity="start"
         android:text=""
         app:layout_constraintBottom_toTopOf="@id/bottomBarrierEditText"
         app:layout_constraintTop_toTopOf="parent" />

@@ -74,7 +74,8 @@
         android:autoLink="web"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/videoIB"
+        app:layout_constraintTop_toBottomOf="@id/barrier_top"
+        app:layout_constraintBottom_toTopOf="@id/videoIB"
         tools:text="@sample/posts.json/data/content" />
 
     <androidx.constraintlayout.widget.Group
@@ -89,8 +90,8 @@
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/barrier_top"
-        app:layout_constraintBottom_toTopOf="@id/ContentTv"
+        app:layout_constraintTop_toBottomOf="@id/ContentTv"
+        app:layout_constraintBottom_toTopOf="@id/barrier_middle"
         android:scaleType="fitXY"
         android:src="@drawable/not_video"
 

@@ -14,9 +14,6 @@
     <string name="str_ic_reposts">Repost icon</string>
     <string name="str_ic_views">Views icon</string>
     <string name="str_ic_close_editing">Close Editing Icon</string>
-    <string name="str_number_of_likes" translatable="false">0</string>
-    <string name="str_number_of_reposts" translatable="false">0</string>
-    <string name="str_number_of_views" translatable="false">0</string>
     <string name="str_ic_edit">Edit icon</string>
     <string name="str_head_edit_post">Edit post</string>
     <string name="chooser_share_post">Share post</string>
