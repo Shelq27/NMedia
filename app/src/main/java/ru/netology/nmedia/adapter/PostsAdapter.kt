@@ -47,9 +47,11 @@ class PostViewHolder(
 ) : RecyclerView.ViewHolder(binding.root) {
     fun bind(post: Post) {
         binding.apply {
-            if (post.video == null) {
-                videoGroup.visibility = View.GONE
-            }
+
+            videoGroup.visibility = if (post.video != null) {
+                View.VISIBLE
+            } else View.GONE
+
             AuthorTv.text = post.author
             PublishedTv.text = post.published
             ContentTv.text = post.content
@@ -67,7 +69,7 @@ class PostViewHolder(
             }
 
 
-            videoIB.setOnClickListener{
+            videoIB.setOnClickListener {
                 onInteraсtionListener.onPlay(post)
 
             }
