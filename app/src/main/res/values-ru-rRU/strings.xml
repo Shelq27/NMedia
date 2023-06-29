@@ -17,4 +17,10 @@
     <string name="str_ic_edit">Иконка редактирования</string>
     <string name="str_head_edit_post">Редактирование поста</string>
     <string name="str_ic_close_editing">Иконка закрыть редактирование</string>
+    <string name="chooser_share_post">Поделиться постом</string>
+    <string name="add_post">Добавить пост</string>
+    <string name="save">Сохранить</string>
+    <string name="text_head_edit_tw">Редактируемый пост</string>
+    <string name="text_video_ib">Здесь должно быть видео</string>
+    <string name="text_play_video_ib">Здесь должна быть кнопка запуска видео</string>
 </resources>

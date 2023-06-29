@@ -11,107 +11,21 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintBottom_toTopOf="@id/topBarrierEdit"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
         tools:layout_editor_absoluteX="0dp"
         tools:listitem="@layout/card_post" />
 
-    <androidx.constraintlayout.widget.Group
-        android:id="@+id/EditGroup"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-        app:constraint_referenced_ids="EditIV,HeadingEditTV,EditedTextPostTV,CancelEditIB,topBarrierEdit" />
-
-    <androidx.constraintlayout.widget.Barrier
-        android:id="@+id/topBarrierEdit"
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:barrierDirection="top"
-        app:constraint_referenced_ids="EditIV,HeadingEditTV,EditedTextPostTV,CancelEditIB" />
-
-
-    <ImageView
-        android:id="@+id/EditIV"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@android:color/transparent"
-        android:contentDescription="@string/str_ic_edit"
-        android:src="@drawable/ic_edit_48"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/topBarrierEdit"
-        app:layout_constraintEnd_toStartOf="@id/HeadingEditTV"
-        app:layout_constraintBottom_toBottomOf="@id/topBarrierContent"
-         />
-
-    <TextView
-        android:id="@+id/HeadingEditTV"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@android:color/transparent"
-        android:text="@string/str_head_edit_post"
-        android:textColor="@color/my_blue_tg"
-        app:layout_constraintBottom_toTopOf="@id/EditedTextPostTV"
-        app:layout_constraintEnd_toStartOf="@id/CancelEditIB"
-        app:layout_constraintStart_toEndOf="@id/EditIV"
-        app:layout_constraintTop_toTopOf="@id/topBarrierEdit" />
-
-    <TextView
-        android:id="@+id/EditedTextPostTV"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@android:color/transparent"
-        android:ellipsize="end"
-        android:lines="1"
-        app:layout_constraintBottom_toTopOf="@id/topBarrierContent"
-        app:layout_constraintEnd_toStartOf="@id/CancelEditIB"
-        app:layout_constraintStart_toEndOf="@id/EditIV"
-        app:layout_constraintTop_toBottomOf="@+id/HeadingEditTV"
-        tools:text="@sample/posts.json/data/content" />
-
-    <ImageButton
-        android:id="@+id/CancelEditIB"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@android:color/transparent"
-        android:contentDescription="@string/str_ic_close_editing"
-        android:src="@drawable/ic_close_48"
-        app:layout_constraintBottom_toTopOf="@id/topBarrierContent"
-        app:layout_constraintTop_toBottomOf="@id/topBarrierEdit"
-        app:layout_constraintStart_toEndOf="@id/HeadingEditTV"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <androidx.constraintlayout.widget.Barrier
-        android:id="@+id/topBarrierContent"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:barrierDirection="top"
-        app:constraint_referenced_ids="content,save" />
-
-    <EditText
-        android:id="@+id/content"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@android:color/transparent"
-        android:hint="@string/post_text"
-        android:importantForAutofill="no"
-        android:inputType="textMultiLine"
-        android:padding="@dimen/common_spacing"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/save"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/topBarrierContent" />
-
-    <ImageButton
-        android:id="@+id/save"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/common_spacing"
-        android:background="@android:color/transparent"
-        android:contentDescription="@string/error_empty_content"
+        android:layout_margin="@dimen/fab_margin"
+        android:contentDescription="@string/add_post"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/content"
-        app:srcCompat="@drawable/ic_save_48" />
+        app:srcCompat="@drawable/ic_add_24dp" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

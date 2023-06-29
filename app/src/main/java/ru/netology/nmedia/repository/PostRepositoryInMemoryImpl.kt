@@ -7,6 +7,7 @@ import ru.netology.nmedia.dto.Post
 class PostRepositoryInMemoryImpl : PostRepository {
     private var nextId = 1L
     private var posts = listOf(
+
         Post(
             id = nextId++,
             author = "Нетология. Университет интернет-профессий будущего",
@@ -69,7 +70,13 @@ class PostRepositoryInMemoryImpl : PostRepository {
             content = "Привет, это новая Нетология! Когда-то Нетология начиналась с интенсивов по онлайн-маркетингу. Затем появились курсы по дизайну, разработке, аналитике и управлению. Мы растём сами и помогаем расти студентам: от новичков до уверенных профессионалов. Но самое важное остаётся с нами: мы верим, что в каждом уже есть сила, которая заставляет хотеть больше, целиться выше, бежать быстрее. Наша миссия — помочь встать на путь роста и начать цепочку перемен → http://netolo.gy/fyb",
             published = "21 мая в 18:36",
             likedByMe = false
-        ),
+        ), Post(
+            id = nextId++,
+            author = "Нетология. Тестовый пост с видео",
+            content = "Пост с видео", published = "23 сентября в 10:12",
+            likedByMe = false,
+            video = "https://www.youtube.com/watch?v=6K95kdj-5JA"
+        )
     ).reversed()
     private val data = MutableLiveData(posts)
     override fun getAll(): LiveData<List<Post>> = data
@@ -106,12 +113,6 @@ class PostRepositoryInMemoryImpl : PostRepository {
         data.value = posts
     }
 
-    override fun repostById(id: Long) {
-        posts = posts.map {
-            if (it.id != id) it else it.copy(reposted = it.reposted + 1)
-        }
-        data.value = posts
-    }
 
     override fun removeById(id: Long) {
         posts = posts.filter { it.id != id }
