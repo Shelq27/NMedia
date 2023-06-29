@@ -38,7 +38,7 @@ class EditPostActivity : AppCompatActivity() {
             finish()
         }
         binding.closeIB.setOnClickListener {
-            setResult(Activity.RESULT_CANCELED,intent)
+            setResult(Activity.RESULT_CANCELED, intent)
             finish()
         }
 

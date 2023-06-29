@@ -26,7 +26,10 @@ class MainActivity : AppCompatActivity() {
         val adapter = PostsAdapter(object : OnInteractionListener {
             val editPostResultContract =
                 registerForActivityResult(EditPostResultContract()) { result ->
-                    result ?: return@registerForActivityResult
+                    if (result == null) {
+                        viewModel.clearEdit()
+                        return@registerForActivityResult
+                    }
                     viewModel.changeContent(result)
                     viewModel.save()
                 }
