@@ -48,7 +48,7 @@ class PostViewHolder(
     fun bind(post: Post) {
         binding.apply {
 
-            videoGroup.visibility = if (post.video != null) {
+            videoGroup.visibility = if (post.video.isNotEmpty()) {
                 View.VISIBLE
             } else View.GONE
 

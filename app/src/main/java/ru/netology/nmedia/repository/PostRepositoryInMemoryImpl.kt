@@ -3,7 +3,7 @@ package ru.netology.nmedia.repository
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import ru.netology.nmedia.dto.Post
-
+// Не используется
 class PostRepositoryInMemoryImpl : PostRepository {
     private var nextId = 1L
     private var posts = listOf(
@@ -104,11 +104,10 @@ class PostRepositoryInMemoryImpl : PostRepository {
 
     override fun likeById(id: Long) {
         posts = posts.map {
-            if (it.likedByMe) {
-                if (it.id != id) it else it.copy(likedByMe = false, likes = it.likes - 1)
-            } else
-                if (it.id != id) it else it.copy(likedByMe = true, likes = it.likes + 1)
-
+            if (it.id != id) it else it.copy(
+                likedByMe = !it.likedByMe,
+                likes = if (it.likedByMe) it.likes - 1 else it.likes + 1
+            )
         }
         data.value = posts
     }

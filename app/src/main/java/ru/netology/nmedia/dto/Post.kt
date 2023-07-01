@@ -1,7 +1,5 @@
 package ru.netology.nmedia.dto
 
-import android.provider.MediaStore.Video
-
 data class Post(
     val id: Long,
     val author: String,
@@ -11,5 +9,5 @@ data class Post(
     val reposted: Int = 0,
     val view: Int = 0,
     val likedByMe: Boolean = false,
-    val video:String?=null
+    val video:String=""
 )
