@@ -1,7 +1,6 @@
 package ru.netology.nmedia.activity
 
-import android.app.Activity
-import android.content.Intent
+import android.app.AlertDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,7 +8,6 @@ import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.setFragmentResultListener
 import androidx.navigation.fragment.findNavController
 import ru.netology.nmedia.databinding.FragmentEditPostBinding
 import ru.netology.nmedia.util.AndroidUtils
@@ -31,10 +29,10 @@ class EditPostFragment : Fragment() {
         val binding = FragmentEditPostBinding.inflate(layoutInflater)
         val viewModel: PostViewModel by activityViewModels()
 
-        val text=arguments?.getString("text")
+        val text=arguments?.text
         binding.editPost.requestFocus()
         if (text!=null){
-            binding.editPost.text
+            binding.editPost.setText(text)
         }
 
         binding.okIB.setOnClickListener {
@@ -45,8 +43,26 @@ class EditPostFragment : Fragment() {
             findNavController().navigateUp()
         }
         binding.closeIB.setOnClickListener {
+            viewModel.clearEdit()
             findNavController().navigateUp()
         }
+        requireActivity().onBackPressedDispatcher.addCallback(
+            viewLifecycleOwner, object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    AlertDialog.Builder(requireActivity()).apply {
+                        setTitle("Выход")
+                        setMessage("Отменить редактировани?")
+                        setPositiveButton("Да") { _, _ ->
+                            viewModel.clearEdit()
+                            AndroidUtils.hideKeyboard(binding.editPost)
+                            findNavController().navigateUp()
+                        }
+                        setNegativeButton("Нет") { _, _ -> }
+                        setCancelable(true)
+                    }.create().show()
+                }
+            }
+        )
         return binding.root
     }
 }

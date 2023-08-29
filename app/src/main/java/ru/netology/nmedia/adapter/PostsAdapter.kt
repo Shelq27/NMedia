@@ -1,7 +1,5 @@
 package ru.netology.nmedia.adapter
 
-import android.content.Intent
-import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -23,6 +21,8 @@ interface OnInteractionListener {
     fun onEdit(post: Post)
     fun onRemove(post: Post)
     fun onPlay(post: Post)
+    fun onOpen(post: Post)
+
 }
 
 class PostsAdapter(
@@ -55,7 +55,6 @@ class PostViewHolder(
             AuthorTv.text = post.author
             PublishedTv.text = post.published
             ContentTv.text = post.content
-
             LikeIb.isChecked = post.likedByMe
             LikeIb.text = prettyCount(post.likes)
             RepostIb.text = prettyCount(post.reposted)
@@ -67,8 +66,9 @@ class PostViewHolder(
             RepostIb.setOnClickListener {
                 onInteraсtionListener.onRepost(post)
             }
-
-
+            ContentTv.setOnClickListener{
+              onInteraсtionListener.onOpen(post)
+            }
             videoIB.setOnClickListener {
                 onInteraсtionListener.onPlay(post)
 

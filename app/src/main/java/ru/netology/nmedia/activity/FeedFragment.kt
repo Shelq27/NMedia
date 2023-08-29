@@ -6,18 +6,16 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.setFragmentResult
 import androidx.navigation.fragment.findNavController
 import ru.netology.nmedia.R
-import ru.netology.nmedia.activity.NewPostFragment.Companion.text
 import ru.netology.nmedia.adapter.OnInteractionListener
 import ru.netology.nmedia.adapter.PostsAdapter
 import ru.netology.nmedia.databinding.FragmentFeedBinding
 import ru.netology.nmedia.dto.Post
 import ru.netology.nmedia.util.StringArg
+import ru.netology.nmedia.util.idArg
 import ru.netology.nmedia.viewmodel.PostViewModel
 
 
@@ -25,6 +23,7 @@ class FeedFragment : Fragment() {
 
     companion object {
         var Bundle.text by StringArg
+        var Bundle.id by idArg
     }
 
     override fun onCreateView(
@@ -57,6 +56,14 @@ class FeedFragment : Fragment() {
                 val intent = Intent(Intent.ACTION_VIEW, Uri.parse(post.video))
                 startActivity(intent)
             }
+
+            override fun onOpen(post: Post) {
+                findNavController().navigate(R.id.action_feedFragment_to_postCardFragment,
+                    Bundle().also { it.id=post.id }
+                    )
+
+            }
+
 
             override fun onRepost(post: Post) {
                 val intent = Intent().apply {
