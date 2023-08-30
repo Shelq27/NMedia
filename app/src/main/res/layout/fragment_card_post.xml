@@ -1,79 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="@dimen/common_spacing">
 
-    <ImageView
-        android:id="@+id/AvatarIv"
-        android:layout_width="@dimen/posts_avatar_size"
-        android:layout_height="@dimen/posts_avatar_size"
-        android:layout_marginBottom="@dimen/common_spacing"
-        android:contentDescription="@string/description_post_author_avatar"
-        android:src="@drawable/ic_netology_48dp"
-        app:layout_constraintBottom_toBottomOf="@id/barrier_top"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@sample/posts.json/data/authorAvatar" />
-
-
-    <TextView
-        android:id="@+id/AuthorTv"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/common_spacing"
-        android:layout_marginEnd="@dimen/common_spacing"
-        android:ellipsize="end"
-        android:singleLine="true"
-        app:layout_constraintBottom_toTopOf="@+id/PublishedTv"
-        app:layout_constraintEnd_toStartOf="@id/MenuIb"
-        app:layout_constraintStart_toEndOf="@id/AvatarIv"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_chainStyle="packed"
-        tools:text="@sample/posts.json/data/author" />
-
-    <TextView
-        android:id="@+id/PublishedTv"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/common_spacing"
-        android:layout_marginEnd="@dimen/common_spacing"
-        android:layout_marginBottom="@dimen/common_spacing"
-        app:layout_constraintBottom_toBottomOf="@id/barrier_top"
-        app:layout_constraintEnd_toStartOf="@id/MenuIb"
-        app:layout_constraintStart_toEndOf="@id/AvatarIv"
-        app:layout_constraintTop_toBottomOf="@id/AuthorTv"
-        tools:text="@sample/posts.json/data/published" />
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/MenuIb"
-        style="@style/Widget.AppTheme.MenuButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:contentDescription="@string/description_post_menu"
-        android:minWidth="48dp"
-        android:minHeight="48dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_more_vert_24" />
-
-    <androidx.constraintlayout.widget.Barrier
-        android:id="@+id/barrier_top"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:barrierDirection="bottom"
-        app:constraint_referenced_ids="AvatarIv,PublishedTv,MenuIb" />
-
-    <ScrollView
-        android:id="@+id/scr_content"
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/videoIB"
-        app:layout_constraintTop_toBottomOf="@id/barrier_top">
+        android:padding="@dimen/common_spacing">
+
+        <ImageView
+            android:id="@+id/AvatarIv"
+            android:layout_width="@dimen/posts_avatar_size"
+            android:layout_height="@dimen/posts_avatar_size"
+            android:paddingTop="@dimen/common_spacing"
+            android:layout_marginBottom="@dimen/common_spacing"
+            android:contentDescription="@string/description_post_author_avatar"
+            android:src="@drawable/ic_netology_48dp"
+            app:layout_constraintBottom_toBottomOf="@id/barrier_top"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:srcCompat="@sample/posts.json/data/authorAvatar" />
+
+
+        <TextView
+            android:id="@+id/AuthorTv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/common_spacing"
+            android:layout_marginEnd="@dimen/common_spacing"
+            android:ellipsize="end"
+            android:singleLine="true"
+            app:layout_constraintBottom_toTopOf="@+id/PublishedTv"
+            app:layout_constraintEnd_toStartOf="@id/MenuIb"
+            app:layout_constraintStart_toEndOf="@id/AvatarIv"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed"
+            tools:text="@sample/posts.json/data/author" />
+
+        <TextView
+            android:id="@+id/PublishedTv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/common_spacing"
+            android:layout_marginEnd="@dimen/common_spacing"
+            android:layout_marginBottom="@dimen/common_spacing"
+            app:layout_constraintBottom_toBottomOf="@id/barrier_top"
+            app:layout_constraintEnd_toStartOf="@id/MenuIb"
+            app:layout_constraintStart_toEndOf="@id/AvatarIv"
+            app:layout_constraintTop_toBottomOf="@id/AuthorTv"
+            tools:text="@sample/posts.json/data/published" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/MenuIb"
+            style="@style/Widget.AppTheme.MenuButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/description_post_menu"
+            android:minWidth="48dp"
+            android:minHeight="48dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_more_vert_24" />
+
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/barrier_top"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:barrierDirection="bottom"
+            app:constraint_referenced_ids="AvatarIv,PublishedTv,MenuIb" />
+
 
         <TextView
             android:id="@+id/ContentTv"
@@ -81,92 +79,98 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/common_spacing"
             android:autoLink="web"
+            app:layout_constraintTop_toBottomOf="@id/barrier_top"
+            app:layout_constraintBottom_toTopOf="@id/videoGroup"
             tools:text="@sample/posts.json/data/content" />
 
-    </ScrollView>
 
-    <androidx.constraintlayout.widget.Group
-        android:id="@+id/videoGroup"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:visibility="visible"
-        app:constraint_referenced_ids="videoIB,videoPlayIB" />
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/videoGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="visible"
+            app:constraint_referenced_ids="videoIB,videoPlayIB"
+            app:layout_constraintBottom_toTopOf="@id/barrier_bottom"
+            app:layout_constraintTop_toBottomOf="@id/ContentTv" />
 
-    <ImageButton
-        android:id="@+id/videoIB"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:contentDescription="@string/text_video_ib"
-        android:scaleType="fitXY"
-        android:src="@drawable/not_video"
-        app:layout_constraintBottom_toTopOf="@id/barrier_bottom"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/scr_content" />
+        <ImageButton
+            android:id="@+id/videoIB"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/text_video_ib"
+            android:scaleType="fitXY"
+            android:src="@drawable/not_video"
+            app:layout_constraintBottom_toBottomOf="@id/videoGroup"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/videoGroup" />
 
-    <ImageButton
-        android:id="@+id/videoPlayIB"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@android:color/transparent"
-        android:contentDescription="@string/text_play_video_ib"
-        android:src="@drawable/ic_play_video24dp"
-        app:layout_constraintBottom_toBottomOf="@id/videoIB"
-        app:layout_constraintEnd_toEndOf="@id/videoIB"
-        app:layout_constraintStart_toStartOf="@id/videoIB"
-        app:layout_constraintTop_toTopOf="@id/videoIB"
-        tools:ignore="TouchTargetSizeCheck" />
-
-
-    <androidx.constraintlayout.widget.Barrier
-        android:id="@+id/barrier_bottom"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:barrierDirection="top"
-        app:constraint_referenced_ids="LikeIb,RepostIb,ViewsIv" />
+        <ImageButton
+            android:id="@+id/videoPlayIB"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/text_play_video_ib"
+            android:src="@drawable/ic_play_video24dp"
+            app:layout_constraintBottom_toBottomOf="@id/videoIB"
+            app:layout_constraintEnd_toEndOf="@id/videoIB"
+            app:layout_constraintStart_toStartOf="@id/videoIB"
+            app:layout_constraintTop_toTopOf="@id/videoIB"
+            tools:ignore="TouchTargetSizeCheck" />
 
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/RepostIb"
-        style="@style/Widget.AppTheme.RepostButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/common_spacing"
-        android:background="@android:color/transparent"
-        android:contentDescription="@string/str_ic_reposts"
-        android:minWidth="48dp"
-        android:minHeight="48dp"
-        app:layout_constraintStart_toEndOf="@id/LikeIb"
-        app:layout_constraintTop_toBottomOf="@id/barrier_bottom"
-        app:srcCompat="@drawable/ic_repost" />
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/ViewsIv"
-        style="@style/Widget.AppTheme.ViewButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/common_spacing"
-        android:background="@android:color/transparent"
-        android:contentDescription="@string/str_ic_views"
-        android:minWidth="48dp"
-        android:minHeight="48dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/barrier_bottom"
-        app:srcCompat="@drawable/ic_views" />
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/LikeIb"
-        style="@style/Widget.AppTheme.LikeButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/common_spacing"
-        android:checkable="true"
-        android:contentDescription="@string/str_ic_likes"
-        android:minWidth="48dp"
-        android:minHeight="48dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/barrier_bottom" />
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/barrier_bottom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:barrierDirection="bottom"
+            app:constraint_referenced_ids="ContentTv,videoGroup" />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/RepostIb"
+            style="@style/Widget.AppTheme.RepostButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/common_spacing"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/str_ic_reposts"
+            android:minWidth="48dp"
+            android:minHeight="48dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/LikeIb"
+            app:layout_constraintTop_toBottomOf="@id/videoGroup"
+            app:srcCompat="@drawable/ic_repost" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/ViewsIv"
+            style="@style/Widget.AppTheme.ViewButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/common_spacing"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/str_ic_views"
+            android:minWidth="48dp"
+            android:minHeight="48dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/videoGroup"
+            app:srcCompat="@drawable/ic_views" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/LikeIb"
+            style="@style/Widget.AppTheme.LikeButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/common_spacing"
+            android:checkable="true"
+            android:contentDescription="@string/str_ic_likes"
+            android:minWidth="48dp"
+            android:minHeight="48dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/videoGroup" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
