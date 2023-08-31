@@ -24,6 +24,7 @@ class PostRepositoryFile(
                 posts = gson.fromJson(it, type)
                 data.value = posts
             }
+            nextId = 1 + (posts.maxByOrNull { it.id }?.id ?: 0L)
         } else {
             sync()
         }

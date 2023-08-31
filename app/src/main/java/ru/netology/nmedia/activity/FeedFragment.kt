@@ -3,39 +3,44 @@ package ru.netology.nmedia.activity
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import androidx.activity.result.launch
-import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import ru.netology.nmedia.R
 import ru.netology.nmedia.adapter.OnInteractionListener
 import ru.netology.nmedia.adapter.PostsAdapter
-import ru.netology.nmedia.databinding.ActivityMainBinding
+import ru.netology.nmedia.databinding.FragmentFeedBinding
 import ru.netology.nmedia.dto.Post
+import ru.netology.nmedia.util.StringArg
+import ru.netology.nmedia.util.idArg
 import ru.netology.nmedia.viewmodel.PostViewModel
 
 
-class MainActivity : AppCompatActivity() {
+class FeedFragment : Fragment() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        val binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+    companion object {
+        var Bundle.text by StringArg
+        var Bundle.id by idArg
+    }
 
-        val viewModel: PostViewModel by viewModels()
-
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        val binding = FragmentFeedBinding.inflate(inflater, container, false)
+        val viewModel: PostViewModel by activityViewModels()
         val adapter = PostsAdapter(object : OnInteractionListener {
-            val editPostResultContract =
-                registerForActivityResult(EditPostResultContract()) { result ->
-                    if (result == null) {
-                        viewModel.clearEdit()
-                        return@registerForActivityResult
-                    }
-                    viewModel.changeContent(result)
-                    viewModel.save()
-                }
+
 
             override fun onEdit(post: Post) {
-                editPostResultContract.launch(post.content)
+
+                findNavController().navigate(R.id.action_feedFragment_to_editPostFragment,
+                    Bundle().also { it.text = post.content }
+                )
                 viewModel.edit(post)
             }
 
@@ -52,6 +57,14 @@ class MainActivity : AppCompatActivity() {
                 startActivity(intent)
             }
 
+            override fun onOpen(post: Post) {
+                findNavController().navigate(R.id.action_feedFragment_to_postCardFragment,
+                    Bundle().also { it.id=post.id }
+                    )
+
+            }
+
+
             override fun onRepost(post: Post) {
                 val intent = Intent().apply {
                     action = Intent.ACTION_SEND
@@ -65,25 +78,22 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
-        val newPostLauncher = registerForActivityResult(NewPostResultContract()) { result ->
-            result ?: return@registerForActivityResult
-            viewModel.changeContent(result)
-            viewModel.save()
-        }
+
 
 
 
         binding.fab.setOnClickListener {
-            newPostLauncher.launch()
+            findNavController().navigate(R.id.action_feedFragment_to_newPostFragment)
         }
 
         binding.list.adapter = adapter
-        viewModel.data.observe(this) { posts ->
+        viewModel.data.observe(viewLifecycleOwner) { posts ->
             adapter.submitList(posts)
         }
-
-
+        return binding.root
     }
+
+
 }
 
 
