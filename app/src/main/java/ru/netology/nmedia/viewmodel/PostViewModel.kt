@@ -18,9 +18,7 @@ private val empty = Post(
 
 class PostViewModel(application: Application) : AndroidViewModel(application) {
 
-//    private val repository: PostRepository = PostRepositorySharedPrefsImpl(application)
     private val repository: PostRepository = PostRepositoryFile(application)
-//    private val repository: PostRepository = PostRepositoryInMemoryImpl()
 
     val data = repository.getAll()
     val edited = MutableLiveData(empty)

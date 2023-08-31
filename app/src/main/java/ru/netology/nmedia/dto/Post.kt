@@ -9,5 +9,5 @@ data class Post(
     val reposted: Int = 0,
     val view: Int = 0,
     val likedByMe: Boolean = false,
-    val video:String="https://www.youtube.com/watch?v=7D2jAsoUP0s"
+    val video:String=""
 )

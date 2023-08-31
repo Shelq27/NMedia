@@ -32,7 +32,7 @@ class PostCardFragment : Fragment() {
         val postId = arguments?.id ?: -1
         viewModel.data.observe(viewLifecycleOwner) { posts ->
             val post = posts.find { it.id == postId } ?: return@observe
-            with(binding) {
+            with(binding.fragmentCardPost) {
                 AuthorTv.text = post.author
                 PublishedTv.text = post.published
                 ContentTv.text = post.content
