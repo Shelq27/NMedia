@@ -83,6 +83,13 @@ class FeedFragment : Fragment() {
 
 
         binding.fab.setOnClickListener {
+            val text=arguments?.text
+            if (text!=null){
+                findNavController().navigate(R.id.action_feedFragment_to_newPostFragment,
+                    Bundle().also { it.text = text }
+                    )
+
+            }else
             findNavController().navigate(R.id.action_feedFragment_to_newPostFragment)
         }
 
