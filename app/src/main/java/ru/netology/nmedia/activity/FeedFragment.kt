@@ -59,8 +59,8 @@ class FeedFragment : Fragment() {
 
             override fun onOpen(post: Post) {
                 findNavController().navigate(R.id.action_feedFragment_to_postCardFragment,
-                    Bundle().also { it.id=post.id }
-                    )
+                    Bundle().also { it.id = post.id }
+                )
 
             }
 
@@ -83,14 +83,14 @@ class FeedFragment : Fragment() {
 
 
         binding.fab.setOnClickListener {
-            val text=arguments?.text
-            if (text!=null){
+            val text = arguments?.text
+            if (text != null) {
                 findNavController().navigate(R.id.action_feedFragment_to_newPostFragment,
                     Bundle().also { it.text = text }
-                    )
+                )
 
-            }else
-            findNavController().navigate(R.id.action_feedFragment_to_newPostFragment)
+            } else
+                findNavController().navigate(R.id.action_feedFragment_to_newPostFragment)
         }
 
         binding.list.adapter = adapter
