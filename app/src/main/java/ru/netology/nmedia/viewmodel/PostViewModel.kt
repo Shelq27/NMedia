@@ -21,11 +21,14 @@ private val empty = Post(
 
 class PostViewModel(application: Application) : AndroidViewModel(application) {
 
+
     private val repository: PostRepository =
         PostRepositorySQLiteImpl(AppDb.getInstance(application).PostDao)
 
     val data = repository.getAll()
     val edited = MutableLiveData(empty)
+
+
 
     fun save() {
         edited.value?.let {
@@ -52,6 +55,8 @@ class PostViewModel(application: Application) : AndroidViewModel(application) {
 
     fun likeById(id: Long) = repository.likeById(id)
     fun removeById(id: Long) = repository.removeById(id)
+    fun repostById(id: Long) =repository.repostById(id)
+
 
 
 }
