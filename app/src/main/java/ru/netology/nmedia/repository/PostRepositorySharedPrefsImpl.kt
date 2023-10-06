@@ -62,6 +62,10 @@ class PostRepositorySharedPrefsImpl(
         sync()
     }
 
+    override fun repostById(id: Long) {
+        TODO("Not yet implemented")
+    }
+
     private fun sync() {
         with(prefs.edit()) {
             putString(key, gson.toJson(posts))

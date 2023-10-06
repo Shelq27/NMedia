@@ -8,7 +8,6 @@ import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
-import ru.netology.nmedia.R
 import ru.netology.nmedia.databinding.FragmentNewPostBinding
 import ru.netology.nmedia.util.AndroidUtils
 import ru.netology.nmedia.util.StringArg
@@ -40,19 +39,12 @@ class NewPostFragment : Fragment() {
             viewModel.changeContent(content)
             viewModel.save()
             AndroidUtils.hideKeyboard(requireView())
-            findNavController().navigate(
-                R.id.action_newPostFragment_to_feedFragment,
-                Bundle().also { it.text = "" }
-            )
+            findNavController().navigateUp()
         }
         requireActivity().onBackPressedDispatcher.addCallback(
             viewLifecycleOwner, object : OnBackPressedCallback(true) {
                 override fun handleOnBackPressed() {
-                    val content = binding.edit.text.toString()
-                    findNavController().navigate(
-                        R.id.action_newPostFragment_to_feedFragment,
-                        Bundle().also { it.text = content }
-                    )
+                    findNavController().navigateUp()
                 }
             }
         )

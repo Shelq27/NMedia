@@ -33,6 +33,7 @@ class FeedFragment : Fragment() {
     ): View? {
         val binding = FragmentFeedBinding.inflate(inflater, container, false)
         val viewModel: PostViewModel by activityViewModels()
+        val draft = arguments?.text
         val adapter = PostsAdapter(object : OnInteractionListener {
 
 
@@ -66,6 +67,7 @@ class FeedFragment : Fragment() {
 
 
             override fun onRepost(post: Post) {
+                viewModel.repostById(post.id)
                 val intent = Intent().apply {
                     action = Intent.ACTION_SEND
                     putExtra(Intent.EXTRA_TEXT, post.content)
@@ -76,6 +78,7 @@ class FeedFragment : Fragment() {
                     Intent.createChooser(intent, getString(R.string.chooser_share_post))
                 startActivity(shareIntent)
             }
+
         })
 
 
@@ -83,14 +86,7 @@ class FeedFragment : Fragment() {
 
 
         binding.fab.setOnClickListener {
-            val text = arguments?.text
-            if (text != null) {
-                findNavController().navigate(R.id.action_feedFragment_to_newPostFragment,
-                    Bundle().also { it.text = text }
-                )
-
-            } else
-                findNavController().navigate(R.id.action_feedFragment_to_newPostFragment)
+            findNavController().navigate(R.id.action_feedFragment_to_newPostFragment)
         }
 
         binding.list.adapter = adapter

@@ -48,5 +48,15 @@ class PostRepositorySQLiteImpl(
         data.value = posts
     }
 
+    override fun repostById(id: Long) {
+        dao.repostById(id)
+        posts = posts.map {
+            if (it.id != id) it else it.copy(
+                reposted = it.reposted + 1
+            )
+        }
+        data.value = posts
+    }
+
 
 }
