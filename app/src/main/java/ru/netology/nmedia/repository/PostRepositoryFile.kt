@@ -66,6 +66,10 @@ class PostRepositoryFile(
         sync()
     }
 
+    override fun repostById(id: Long) {
+        TODO("Not yet implemented")
+    }
+
     private fun sync() {
         context.openFileOutput(filename, Context.MODE_PRIVATE).bufferedWriter().use {
             it.write(gson.toJson(posts))

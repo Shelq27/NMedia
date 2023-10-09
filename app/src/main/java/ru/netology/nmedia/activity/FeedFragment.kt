@@ -59,13 +59,14 @@ class FeedFragment : Fragment() {
 
             override fun onOpen(post: Post) {
                 findNavController().navigate(R.id.action_feedFragment_to_postCardFragment,
-                    Bundle().also { it.id=post.id }
-                    )
+                    Bundle().also { it.id = post.id }
+                )
 
             }
 
 
             override fun onRepost(post: Post) {
+                viewModel.repostById(post.id)
                 val intent = Intent().apply {
                     action = Intent.ACTION_SEND
                     putExtra(Intent.EXTRA_TEXT, post.content)
@@ -76,6 +77,7 @@ class FeedFragment : Fragment() {
                     Intent.createChooser(intent, getString(R.string.chooser_share_post))
                 startActivity(shareIntent)
             }
+
         })
 
 

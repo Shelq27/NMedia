@@ -7,7 +7,7 @@ import androidx.navigation.fragment.NavHostFragment
 import com.google.android.material.snackbar.BaseTransientBottomBar.LENGTH_INDEFINITE
 import com.google.android.material.snackbar.Snackbar
 import ru.netology.nmedia.R
-import ru.netology.nmedia.activity.NewPostFragment.Companion.text
+import ru.netology.nmedia.activity.FeedFragment.Companion.text
 import ru.netology.nmedia.databinding.ActivityAppBinding
 
 class AppActivity : AppCompatActivity() {
