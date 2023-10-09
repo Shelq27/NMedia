@@ -115,6 +115,7 @@ class PostDaoImpl(private val db: SQLiteDatabase) : PostDao {
         )
     }
 
+
     private fun map(cursor: Cursor): Post {
         with(cursor) {
             return Post(

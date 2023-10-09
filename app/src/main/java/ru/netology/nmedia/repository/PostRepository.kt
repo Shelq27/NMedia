@@ -11,4 +11,5 @@ interface PostRepository {
     fun save(post:Post)
     fun repostById(id: Long)
 
+
 }

@@ -33,7 +33,6 @@ class FeedFragment : Fragment() {
     ): View? {
         val binding = FragmentFeedBinding.inflate(inflater, container, false)
         val viewModel: PostViewModel by activityViewModels()
-        val draft = arguments?.text
         val adapter = PostsAdapter(object : OnInteractionListener {
 
 
