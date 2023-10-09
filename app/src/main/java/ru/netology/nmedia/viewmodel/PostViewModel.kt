@@ -26,8 +26,9 @@ class PostViewModel(application: Application) : AndroidViewModel(application) {
         PostRepositorySQLiteImpl(AppDb.getInstance(application).PostDao)
 
     val data = repository.getAll()
-    val edited = MutableLiveData(empty)
 
+    val edited = MutableLiveData(empty)
+    var draft: String? = null
 
 
     fun save() {
@@ -55,8 +56,7 @@ class PostViewModel(application: Application) : AndroidViewModel(application) {
 
     fun likeById(id: Long) = repository.likeById(id)
     fun removeById(id: Long) = repository.removeById(id)
-    fun repostById(id: Long) =repository.repostById(id)
-
+    fun repostById(id: Long) = repository.repostById(id)
 
 
 }
