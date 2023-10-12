@@ -23,4 +23,9 @@
     <string name="text_head_edit_tw">Редактируемый пост</string>
     <string name="text_video_ib">Здесь должно быть видео</string>
     <string name="text_play_video_ib">Здесь должна быть кнопка запуска видео</string>
+    <string name="google_play_unavailable">Google Api недоступен</string>
+    <string name="notification_user_liked">Пользователю %1$s понравился пост %2$s</string>
+    <string name="channel_remote_name">Уведомления сервера</string>
+    <string name="channel_remote_description">Уведомления с удаленного сервера</string>
+    <string name="notification_new_post">%1$s опубликовал новый пост:</string>
 </resources>

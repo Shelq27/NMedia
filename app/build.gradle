@@ -2,6 +2,8 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'org.jetbrains.kotlin.kapt'
+    id 'com.google.gms.google-services'
+
 }
 
 android {
@@ -51,6 +53,7 @@ dependencies {
     def gson_version = "2.10.1"
     def nav_version = "2.7.2"
     def room_version = "2.5.2"
+    def firebase_version ="32.3.1"
 
 
     implementation "androidx.core:core-ktx:$core_version"
@@ -66,6 +69,9 @@ dependencies {
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
     implementation "androidx.room:room-runtime:$room_version"
     kapt "androidx.room:room-compiler:$room_version"
+    implementation platform("com.google.firebase:firebase-bom:$firebase_version")
+    implementation("com.google.firebase:firebase-messaging-ktx")
+
 
 
     testImplementation "junit:junit:$junit_version"
