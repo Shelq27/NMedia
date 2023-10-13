@@ -22,4 +22,10 @@
     <string name="text_head_edit_tw">Editable post</string>
     <string name="text_video_ib">There should be a video here</string>
     <string name="text_play_video_ib">There should be a video launch button here</string>
+    <string name="google_play_unavailable">Google Api Unavailable</string>
+    <string name="notification_user_liked">User %1$s liked %2$s\'s post</string>
+    <string name="channel_remote_name">Server notifications</string>
+    <string name="channel_remote_description">Notifications from remote server</string>
+    <string name="notification_new_post">%1$s posted a new post:</string>
+
 </resources>

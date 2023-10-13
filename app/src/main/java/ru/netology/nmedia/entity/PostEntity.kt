@@ -8,9 +8,9 @@ import ru.netology.nmedia.dto.Post
 data class PostEntity(
     @PrimaryKey(autoGenerate = true)
     val id: Long,
-    val author: String,
+    val author: String ,
     val content: String,
-    val published: String,
+    val published: String ,
     val likes: Int,
     val reposted: Int,
     val view: Int,
