@@ -47,7 +47,6 @@ class FeedFragment : Fragment() {
 
             override fun onLike(post: Post) {
                 viewModel.likeById(post.id)
-                viewModel.loadPost()
 
             }
 
@@ -97,6 +96,7 @@ class FeedFragment : Fragment() {
         binding.retryButton.setOnClickListener{
             viewModel.loadPost()
         }
+
         return binding.root
     }
 

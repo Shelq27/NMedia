@@ -67,11 +67,9 @@ class PostViewModel(application: Application) : AndroidViewModel(application) {
                 if (edited.value?.content != text) {
                     repository.save(it.copy(content = text))
                     _postCreated.postValue(Unit)
-
                 }
             }
         }
-        _postCreated.postValue(Unit)
         edited.value = empty
     }
 
@@ -80,13 +78,13 @@ class PostViewModel(application: Application) : AndroidViewModel(application) {
             val post = _data.value?.posts?.find { it.id == id }
             if (post?.likedByMe == true) {
                 repository.unlikeById(id)
-                _postCreated.postValue(Unit)
 
             } else {
                 repository.likeById(id)
-                _postCreated.postValue(Unit)
-
             }
+            _postCreated.postValue(Unit)
+            loadPost()
+
         }
     }
 
