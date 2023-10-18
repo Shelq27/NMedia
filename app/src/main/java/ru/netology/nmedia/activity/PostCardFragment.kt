@@ -24,7 +24,7 @@ class PostCardFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
-    ): View {
+    ): View? {
         val binding = FragmentCardPostBinding.inflate(inflater, container, false)
         val viewModel: PostViewModel by activityViewModels()
 

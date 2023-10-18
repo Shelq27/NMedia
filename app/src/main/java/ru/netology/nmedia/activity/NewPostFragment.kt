@@ -14,12 +14,12 @@ import ru.netology.nmedia.util.StringArg
 import ru.netology.nmedia.viewmodel.PostViewModel
 
 
-
 class NewPostFragment : Fragment() {
 
     companion object {
         var Bundle.text by StringArg
     }
+
     private val viewModel: PostViewModel by activityViewModels()
 
     override fun onCreateView(
@@ -32,15 +32,19 @@ class NewPostFragment : Fragment() {
         binding.edit.setText(
             if (viewModel.draft != null) viewModel.draft else arguments?.text
         )
-        
+
 
         binding.edit.requestFocus()
         binding.save.setOnClickListener {
             val content = binding.edit.text.toString()
             viewModel.changeContent(content)
-            viewModel.draft=null
+            viewModel.draft = null
             viewModel.save()
             AndroidUtils.hideKeyboard(requireView())
+            findNavController().navigateUp()
+        }
+        viewModel.postCreated.observe(viewLifecycleOwner) {
+            viewModel.loadPost()
             findNavController().navigateUp()
         }
         requireActivity().onBackPressedDispatcher.addCallback(
