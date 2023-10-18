@@ -20,15 +20,15 @@ class NewPostFragment : Fragment() {
     companion object {
         var Bundle.text by StringArg
     }
+    private val viewModel: PostViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         val binding = FragmentNewPostBinding.inflate(inflater, container, false)
-        val viewModel: PostViewModel by activityViewModels()
-        
+
         binding.edit.setText(
             if (viewModel.draft != null) viewModel.draft else arguments?.text
         )

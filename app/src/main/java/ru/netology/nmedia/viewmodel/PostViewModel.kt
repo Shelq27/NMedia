@@ -1,12 +1,13 @@
 package ru.netology.nmedia.viewmodel
 
 import android.app.Application
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.MutableLiveData
-import ru.netology.nmedia.db.AppDb
+import androidx.lifecycle.*
 import ru.netology.nmedia.dto.Post
-import ru.netology.nmedia.repository.PostRepository
-import ru.netology.nmedia.repository.PostRepositoryRoomImpl
+import ru.netology.nmedia.model.FeedModel
+import ru.netology.nmedia.repository.*
+import ru.netology.nmedia.util.SingleLiveEvent
+import java.io.IOException
+import kotlin.concurrent.thread
 
 private val empty = Post(
     id = 0,
@@ -21,21 +22,40 @@ private val empty = Post(
 
 class PostViewModel(application: Application) : AndroidViewModel(application) {
 
-
-    private val repository: PostRepository =
-        PostRepositoryRoomImpl(AppDb.getInstance(application).PostDao)
-
-    val data = repository.getAll()
-
+    private val repository: PostRepository = PostRepositoryImpl()
+    private val _data = MutableLiveData(FeedModel())
+    val data: LiveData<FeedModel>
+        get() = _data
     val edited = MutableLiveData(empty)
-    var draft: String? = null
+    private val _postCreated = SingleLiveEvent<Unit>()
+    val postCreated: LiveData<Unit>
+        get() = _postCreated
 
+    init {
+        loadPost()
+    }
+
+    fun loadPost() {
+        thread {
+            _data.postValue(FeedModel(loading = true))
+
+            try {
+                val posts = repository.getAll()
+                FeedModel(posts = posts, empty = posts.isEmpty())
+            } catch (e: IOException) {
+                FeedModel(error = true)
+            }.also(_data::postValue)
+        }
+    }
 
     fun save() {
-        edited.value?.let {
-            repository.save(it)
+        thread {
+            edited.value?.let {
+                repository.save(it)
+                _postCreated.postValue(Unit)
+            }
+            edited.value = empty
         }
-        edited.value = empty
     }
 
     fun edit(post: Post) {
@@ -53,10 +73,29 @@ class PostViewModel(application: Application) : AndroidViewModel(application) {
         }
         edited.value = edited.value?.copy(content = text)
     }
+    fun likeById(id: Long) {
+        thread { repository.likeById(id) }
+    }
+    fun removeById(id: Long) {
+        thread {
+            val old = _data.value?.posts.orEmpty()
+            _data.postValue(
+                _data.value?.copy(posts = _data.value?.posts.orEmpty()
+                    .filter { it.id != id }
+                )
+            )
+            try {
+                repository.removeById(id)
+            } catch (e: IOException) {
+                _data.postValue(_data.value?.copy(posts = old))
+            }
+        }
+    }
 
-    fun likeById(id: Long) = repository.likeById(id)
-    fun removeById(id: Long) = repository.removeById(id)
-    fun repostById(id: Long) = repository.repostById(id)
+    fun repostById(id: Long) {
+        thread { repository.repostById(id) }
+    }
 
 
 }
+

@@ -24,14 +24,14 @@ class PostCardFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         val binding = FragmentCardPostBinding.inflate(inflater, container, false)
         val viewModel: PostViewModel by activityViewModels()
 
 
         val postId = arguments?.id ?: -1
-        viewModel.data.observe(viewLifecycleOwner) { posts ->
-            val post = posts.find { it.id == postId } ?: return@observe
+        viewModel.data.observe(viewLifecycleOwner) { state ->
+            val post = state.posts.find { it.id == postId } ?: return@observe
             with(binding.fragmentCardPost) {
                 AuthorTv.text = post.author
                 PublishedTv.text = post.published
