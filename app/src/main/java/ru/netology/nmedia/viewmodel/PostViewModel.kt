@@ -17,10 +17,11 @@ private val empty = Post(
     content = "",
     author = "Shelq",
     likes = 0,
-    published = "Now",
+    published = 0,
     reposted = 0,
     likedByMe = false,
-    video = ""
+    video = "",
+    view = 0
 )
 
 class PostViewModel(application: Application) : AndroidViewModel(application) {

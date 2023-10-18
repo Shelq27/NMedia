@@ -53,7 +53,7 @@ class PostViewHolder(
             } else View.GONE
 
             AuthorTv.text = post.author
-            PublishedTv.text = post.published
+            PublishedTv.text = post.published.toString()
             ContentTv.text = post.content
             LikeIb.isChecked = post.likedByMe
             LikeIb.text = prettyCount(post.likes)

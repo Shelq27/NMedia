@@ -34,7 +34,7 @@ class PostCardFragment : Fragment() {
             val post = state.posts.find { it.id == postId } ?: return@observe
             with(binding.fragmentCardPost) {
                 AuthorTv.text = post.author
-                PublishedTv.text = post.published
+                PublishedTv.text = post.published.toString()
                 ContentTv.text = post.content
                 LikeIb.isChecked = post.likedByMe
                 LikeIb.text = prettyCount(post.likes)
