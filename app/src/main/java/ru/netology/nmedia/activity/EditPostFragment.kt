@@ -37,10 +37,9 @@ class EditPostFragment : Fragment() {
 
         binding.okIB.setOnClickListener {
             val content = binding.editPost.text.toString()
-            viewModel.changeContent(content)
-            viewModel.save()
+            viewModel.changeContentAndSave(content)
             AndroidUtils.hideKeyboard(requireView())
-            findNavController().navigateUp()
+
         }
         binding.closeIB.setOnClickListener {
             viewModel.clearEdit()
@@ -63,6 +62,10 @@ class EditPostFragment : Fragment() {
                 }
             }
         )
+        viewModel.postCreated.observe(viewLifecycleOwner) {
+            viewModel.loadPost()
+            findNavController().navigateUp()
+        }
         return binding.root
     }
 }

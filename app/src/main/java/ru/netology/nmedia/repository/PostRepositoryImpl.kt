@@ -36,7 +36,25 @@ class PostRepositoryImpl : PostRepository {
     }
 
     override fun likeById(id: Long) {
-        TODO("Not yet implemented")
+        val request: Request= Request.Builder()
+            .post(gson.toJson(id).toRequestBody(jsonType))
+            .url("${BASE_URL}/api/slow/posts/$id/likes")
+            .build()
+
+        client.newCall(request)
+            .execute()
+            .close()
+    }
+
+    override fun unlikeById(id: Long) {
+        val request: Request= Request.Builder()
+            .delete(gson.toJson(id).toRequestBody(jsonType))
+            .url("${BASE_URL}/api/slow/posts/$id/likes")
+            .build()
+
+        client.newCall(request)
+            .execute()
+            .close()
     }
 
     override fun removeById(id: Long) {

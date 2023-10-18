@@ -43,23 +43,12 @@ class PostViewModel(application: Application) : AndroidViewModel(application) {
     fun loadPost() {
         thread {
             _data.postValue(FeedModel(loading = true))
-
             try {
                 val posts = repository.getAll()
                 FeedModel(posts = posts, empty = posts.isEmpty())
             } catch (e: IOException) {
                 FeedModel(error = true)
             }.also(_data::postValue)
-        }
-    }
-
-    fun save() {
-        thread {
-            edited.value?.let {
-                repository.save(it)
-                _postCreated.postValue(Unit)
-            }
-            edited.value = empty
         }
     }
 
@@ -71,18 +60,36 @@ class PostViewModel(application: Application) : AndroidViewModel(application) {
         edited.value = empty
     }
 
-    fun changeContent(content: String) {
-        val text = content.trim()
-        if (edited.value?.content == text) {
-            return
-        }
-        edited.value = edited.value?.copy(content = text)
+    fun changeContentAndSave(content: String) {
+        edited.value?.let {
+            thread {
+                val text = content.trim()
+                if (edited.value?.content != text) {
+                    repository.save(it.copy(content = text))
+                    _postCreated.postValue(Unit)
 
+                }
+            }
+        }
+        _postCreated.postValue(Unit)
+        edited.value = empty
     }
 
     fun likeById(id: Long) {
-        thread { repository.likeById(id) }
+        thread {
+            val post = _data.value?.posts?.find { it.id == id }
+            if (post?.likedByMe == true) {
+                repository.unlikeById(id)
+                _postCreated.postValue(Unit)
+
+            } else {
+                repository.likeById(id)
+                _postCreated.postValue(Unit)
+
+            }
+        }
     }
+
 
     fun removeById(id: Long) {
         thread {
