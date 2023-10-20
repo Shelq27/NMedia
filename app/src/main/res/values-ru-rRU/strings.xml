@@ -28,4 +28,7 @@
     <string name="channel_remote_name">Уведомления сервера</string>
     <string name="channel_remote_description">Уведомления с удаленного сервера</string>
     <string name="notification_new_post">%1$s опубликовал новый пост:</string>
+    <string name="no_posts">Нет постов</string>
+    <string name="internet_error">Ошибка сервера</string>
+    <string name="button_text_retry">Обновить</string>
 </resources>
