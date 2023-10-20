@@ -1,7 +1,6 @@
 package ru.netology.nmedia.adapter
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.widget.PopupMenu
 import androidx.recyclerview.widget.DiffUtil
@@ -48,17 +47,17 @@ class PostViewHolder(
     fun bind(post: Post) {
         binding.apply {
 
-            videoGroup.visibility = if (post.video.isNotEmpty()) {
-                View.VISIBLE
-            } else View.GONE
+//            videoGroup.visibility = if (post.video.isNotEmpty()) {
+//                View.VISIBLE
+//            } else View.GONE
 
             AuthorTv.text = post.author
             PublishedTv.text = post.published.toString()
             ContentTv.text = post.content
             LikeIb.isChecked = post.likedByMe
             LikeIb.text = prettyCount(post.likes)
-            RepostIb.text = prettyCount(post.reposted)
-            ViewsIv.text = prettyCount(post.view)
+//            RepostIb.text = prettyCount(post.reposted)
+//            ViewsIv.text = prettyCount(post.view)
             LikeIb.setOnClickListener {
                 onInteraсtionListener.onLike(post)
             }
