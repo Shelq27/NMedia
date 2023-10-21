@@ -1,7 +1,6 @@
 package ru.netology.nmedia.activity
 
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -55,8 +54,8 @@ class FeedFragment : Fragment() {
             }
 
             override fun onPlay(post: Post) {
-                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(post.video))
-                startActivity(intent)
+//                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(post.video))
+//                startActivity(intent)
             }
 
             override fun onOpen(post: Post) {

@@ -1,7 +1,6 @@
 package ru.netology.nmedia.activity
 
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -38,11 +37,11 @@ class PostCardFragment : Fragment() {
                 ContentTv.text = post.content
                 LikeIb.isChecked = post.likedByMe
                 LikeIb.text = prettyCount(post.likes)
-                RepostIb.text = prettyCount(post.reposted)
-                ViewsIv.text = prettyCount(post.view)
-                videoGroup.visibility = if (post.video.isNotEmpty()) {
-                    View.VISIBLE
-                } else View.GONE
+//                RepostIb.text = prettyCount(post.reposted)
+//                ViewsIv.text = prettyCount(post.view)
+//                videoGroup.visibility = if (post.video.isNotEmpty()) {
+//                    View.VISIBLE
+//                } else View.GONE
 
                 LikeIb.setOnClickListener {
                     viewModel.likeById(post.id)
@@ -60,14 +59,14 @@ class PostCardFragment : Fragment() {
                     startActivity(shareIntent)
                 }
 
-                videoIB.setOnClickListener {
-                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(post.video))
-                    startActivity(intent)
-                }
-                videoPlayIB.setOnClickListener {
-                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(post.video))
-                    startActivity(intent)
-                }
+//                videoIB.setOnClickListener {
+//                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(post.video))
+//                    startActivity(intent)
+//                }
+//                videoPlayIB.setOnClickListener {
+//                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(post.video))
+//                    startActivity(intent)
+//                }
                 MenuIb.setOnClickListener {
                     PopupMenu(it.context, it).apply {
                         inflate(R.menu.options_post)

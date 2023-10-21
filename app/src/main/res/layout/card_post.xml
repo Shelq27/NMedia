@@ -82,7 +82,7 @@
         android:id="@+id/videoGroup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="visible"
+        android:visibility="gone"
         app:constraint_referenced_ids="videoIB,videoPlayIB" />
     <ImageButton
         android:id="@+id/videoIB"
