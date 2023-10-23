@@ -1,11 +1,14 @@
 package ru.netology.nmedia.adapter
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.PopupMenu
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import ru.netology.nmedia.R
 import ru.netology.nmedia.databinding.CardPostBinding
 import ru.netology.nmedia.dto.Post
@@ -40,17 +43,23 @@ class PostsAdapter(
     }
 }
 
-
 class PostViewHolder(
     private val binding: CardPostBinding, private val onInteraсtionListener: OnInteractionListener
 ) : RecyclerView.ViewHolder(binding.root) {
     fun bind(post: Post) {
+
         binding.apply {
 
 //            videoGroup.visibility = if (post.video.isNotEmpty()) {
 //                View.VISIBLE
 //            } else View.GONE
 
+
+            AvatarIv.loadImg("http://10.0.2.2:9999/avatars/${post.authorAvatar}")
+            if (post.attachment != null) {
+                AttachmentIv.loadAttachment("http://10.0.2.2:9999/images/${post.attachment!!.url}")
+                AttachmentIv.visibility = View.VISIBLE
+            } else AttachmentIv.visibility = View.GONE
             AuthorTv.text = post.author
             PublishedTv.text = post.published.toString()
             ContentTv.text = post.content
@@ -65,14 +74,14 @@ class PostViewHolder(
             RepostIb.setOnClickListener {
                 onInteraсtionListener.onRepost(post)
             }
-            ContentTv.setOnClickListener{
-              onInteraсtionListener.onOpen(post)
+            ContentTv.setOnClickListener {
+                onInteraсtionListener.onOpen(post)
             }
-            videoIB.setOnClickListener {
+            VideoIb.setOnClickListener {
                 onInteraсtionListener.onPlay(post)
 
             }
-            videoPlayIB.setOnClickListener {
+            VideoPlayIb.setOnClickListener {
                 onInteraсtionListener.onPlay(post)
             }
             MenuIb.setOnClickListener {
@@ -108,6 +117,24 @@ class PostDiffCallback : DiffUtil.ItemCallback<Post>() {
         return oldItem == newItem
     }
 
+}
+
+fun ImageView.loadImg(url: String) {
+    Glide.with(this)
+        .load(url)
+        .placeholder(R.drawable.ic_load_24dp)
+        .error(R.drawable.ic_error_24dp)
+        .timeout(30_0000)
+        .circleCrop()
+        .into(this)
+}
+fun ImageView.loadAttachment(url: String) {
+    Glide.with(this)
+        .load(url)
+        .placeholder(R.drawable.ic_load_24dp)
+        .error(R.drawable.ic_error_24dp)
+        .timeout(30_0000)
+        .into(this)
 }
 
 fun prettyCount(numb: Int): String? {

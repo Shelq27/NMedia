@@ -31,4 +31,5 @@
     <string name="no_posts">Нет постов</string>
     <string name="internet_error">Ошибка сервера</string>
     <string name="button_text_retry">Обновить</string>
+    <string name="text_attachment_iv">Изображение вложения</string>
 </resources>
