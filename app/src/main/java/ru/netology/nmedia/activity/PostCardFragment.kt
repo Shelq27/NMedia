@@ -11,8 +11,10 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import ru.netology.nmedia.R
 import ru.netology.nmedia.activity.EditPostFragment.Companion.text
-import ru.netology.nmedia.adapter.prettyCount
 import ru.netology.nmedia.databinding.FragmentCardPostBinding
+import ru.netology.nmedia.util.AndroidUtils
+import ru.netology.nmedia.util.AndroidUtils.loadAttachment
+import ru.netology.nmedia.util.AndroidUtils.loadImg
 import ru.netology.nmedia.util.idArg
 import ru.netology.nmedia.viewmodel.PostViewModel
 
@@ -36,7 +38,12 @@ class PostCardFragment : Fragment() {
                 PublishedTv.text = post.published.toString()
                 ContentTv.text = post.content
                 LikeIb.isChecked = post.likedByMe
-                LikeIb.text = prettyCount(post.likes)
+                LikeIb.text = AndroidUtils.prettyCount(post.likes)
+                AvatarIv.loadImg("http://10.0.2.2:9999/avatars/${post.authorAvatar}")
+                if (post.attachment != null) {
+                    AttachmentIv.loadAttachment("http://10.0.2.2:9999/images/${post.attachment!!.url}")
+                    AttachmentIv.visibility = View.VISIBLE
+                } else AttachmentIv.visibility = View.GONE
 //                RepostIb.text = prettyCount(post.reposted)
 //                ViewsIv.text = prettyCount(post.view)
 //                videoGroup.visibility = if (post.video.isNotEmpty()) {
