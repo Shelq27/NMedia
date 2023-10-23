@@ -3,19 +3,16 @@ package ru.netology.nmedia.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.PopupMenu
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import ru.netology.nmedia.R
 import ru.netology.nmedia.databinding.CardPostBinding
 import ru.netology.nmedia.dto.Post
-import java.math.RoundingMode
-import java.text.DecimalFormat
-import kotlin.math.floor
-import kotlin.math.log10
+import ru.netology.nmedia.util.AndroidUtils
+import ru.netology.nmedia.util.AndroidUtils.loadAttachment
+import ru.netology.nmedia.util.AndroidUtils.loadImg
 
 interface OnInteractionListener {
     fun onLike(post: Post)
@@ -64,7 +61,7 @@ class PostViewHolder(
             PublishedTv.text = post.published.toString()
             ContentTv.text = post.content
             LikeIb.isChecked = post.likedByMe
-            LikeIb.text = prettyCount(post.likes)
+            LikeIb.text = AndroidUtils.prettyCount(post.likes)
 //            RepostIb.text = prettyCount(post.reposted)
 //            ViewsIv.text = prettyCount(post.view)
             LikeIb.setOnClickListener {
@@ -119,36 +116,6 @@ class PostDiffCallback : DiffUtil.ItemCallback<Post>() {
 
 }
 
-fun ImageView.loadImg(url: String) {
-    Glide.with(this)
-        .load(url)
-        .placeholder(R.drawable.ic_load_24dp)
-        .error(R.drawable.ic_error_24dp)
-        .timeout(30_0000)
-        .circleCrop()
-        .into(this)
-}
-fun ImageView.loadAttachment(url: String) {
-    Glide.with(this)
-        .load(url)
-        .placeholder(R.drawable.ic_load_24dp)
-        .error(R.drawable.ic_error_24dp)
-        .timeout(30_0000)
-        .into(this)
-}
-
-fun prettyCount(numb: Int): String? {
-    val value = floor(log10(numb.toDouble())).toInt()
-    return when {
-        value < 3 -> numb.toString() // < 1000
-        value < 4 -> DecimalFormat("#.#").apply { roundingMode = RoundingMode.FLOOR }
-            .format(numb.toDouble() / 1000) + "K" // < 10_000
-        value < 6 -> DecimalFormat("#").apply { roundingMode = RoundingMode.FLOOR }
-            .format(numb.toDouble() / 1000) + "K" // < 1_000_000
-        else -> DecimalFormat("#.#").apply { roundingMode = RoundingMode.FLOOR }
-            .format(numb.toDouble() / 1_000_000) + "M"
-    }
-}
 
 
 
