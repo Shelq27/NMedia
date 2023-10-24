@@ -28,7 +28,6 @@ class NewPostFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         val binding = FragmentNewPostBinding.inflate(inflater, container, false)
-
         binding.edit.setText(
             if (viewModel.draft != null) viewModel.draft else arguments?.text
         )

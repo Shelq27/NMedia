@@ -1,6 +1,8 @@
 package ru.netology.nmedia.viewmodel
 
 import android.app.Application
+import android.widget.Toast
+import androidx.core.content.ContextCompat.getString
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -76,11 +78,15 @@ class PostViewModel(application: Application) : AndroidViewModel(application) {
                     object : PostRepository.RepositoryCallback<Unit> {
                         override fun onSuccess(result: Unit) {
                             _postCreated.postValue(Unit)
+                            loadPost()
                         }
 
                         override fun onError(e: Exception) {
                             _data.postValue(
-                                FeedModel(error = true, errorText = context.resources.getString(R.string.save_error))
+                                FeedModel(
+                                    error = true,
+                                    errorText = context.resources.getString(R.string.save_error)
+                                )
                             )
                         }
                     })
@@ -105,15 +111,25 @@ class PostViewModel(application: Application) : AndroidViewModel(application) {
             override fun onError(e: Exception) {
                 val post = _data.value?.posts?.find { it.id == id }
                 if (post?.likedByMe == true) {
-                    _data.postValue(
-                        FeedModel(error = true, errorText = context.resources.getString(R.string.unlike_error))
-                    )
-                } else {
-                    _data.postValue(
-                        FeedModel(error = true, errorText = context.resources.getString(R.string.like_error))
-                    )
-                }
+                    toastError(R.string.unlike_error)
+                    _data.postValue(data.value?.posts?.let {
+                        _data.value?.copy(
+                            posts = it,
+                            empty = it.isEmpty()
+                        )
+                    })
 
+
+                } else {
+                    toastError(R.string.like_error)
+                    _data.postValue(data.value?.posts?.let {
+                        _data.value?.copy(
+                            posts = it,
+                            empty = it.isEmpty()
+                        )
+                    })
+
+                }
             }
 
         }
@@ -141,18 +157,19 @@ class PostViewModel(application: Application) : AndroidViewModel(application) {
             }
 
             override fun onError(e: Exception) {
-
                 _data.postValue(_data.value?.copy(posts = old))
-                _data.postValue(
-                    FeedModel(error = true, errorText =context.resources.getString(R.string.remove_error))
-                )
+
             }
         })
     }
 
 
     fun repostById(id: Long) {
+    }
 
+    fun toastError(textResources: Int) {
+        Toast.makeText(context, getString(context, textResources), Toast.LENGTH_SHORT).show()
+        loadPost()
     }
 }
 

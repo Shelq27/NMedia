@@ -91,25 +91,7 @@ class PostRepositoryImpl : PostRepository {
             override fun onFailure(call: Call<Post>, t: Throwable) {
                 callback.onError(Exception(t))
             }
-
         })
-
-//        val request: Request = Request.Builder()
-//            .post(gson.toJson(post).toRequestBody(jsonType))
-//            .url("${BASE_URL}/api/slow/posts")
-//            .build()
-//
-//        client.newCall(request)
-//            .enqueue(object : Callback {
-//                override fun onFailure(call: Call, e: IOException) {
-//                    callback.onError(e)
-//                }
-//
-//                override fun onResponse(call: Call, response: Response) {
-//                    response.close()
-//                }
-//
-//            })
     }
 
 
