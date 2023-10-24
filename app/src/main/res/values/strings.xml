@@ -30,5 +30,6 @@
     <string name="no_posts">No posts</string>
     <string name="internet_error">Internet Error</string>
     <string name="button_text_retry">retry</string>
+    <string name="text_attachment_iv">Attachment Image</string>
 
 </resources>

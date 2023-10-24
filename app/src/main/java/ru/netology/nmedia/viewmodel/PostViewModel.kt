@@ -17,7 +17,7 @@ private val empty = Post(
     likes = 0,
     published = 0,
     likedByMe = false,
-    authorAvatar = ""
+    authorAvatar = "netology.jpg"
 
 )
 
@@ -33,6 +33,8 @@ class PostViewModel(application: Application) : AndroidViewModel(application) {
         get() = _postCreated
     var draft: String? = null
 
+
+
     init {
         loadPost()
     }
@@ -43,6 +45,7 @@ class PostViewModel(application: Application) : AndroidViewModel(application) {
         repository.getAllAsync(object : PostRepository.RepositoryCallback<List<Post>> {
             override fun onSuccess(result: List<Post>) {
                 _data.postValue(FeedModel(posts = result, empty = result.isEmpty()))
+
             }
 
             override fun onError(e: Exception) {

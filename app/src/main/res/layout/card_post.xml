@@ -73,9 +73,9 @@
         android:layout_marginTop="@dimen/common_spacing"
         android:autoLink="web"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/barrier_top"
-        app:layout_constraintBottom_toTopOf="@id/videoIB"
         tools:text="@sample/posts.json/data/content" />
 
     <androidx.constraintlayout.widget.Group
@@ -83,31 +83,44 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:visibility="gone"
-        app:constraint_referenced_ids="videoIB,videoPlayIB" />
+        app:constraint_referenced_ids="VideoIb,VideoPlayIb" />
+
     <ImageButton
-        android:id="@+id/videoIB"
+        android:id="@+id/VideoIb"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ContentTv"
-        app:layout_constraintBottom_toTopOf="@id/barrier_middle"
+        android:contentDescription="@string/text_video_ib"
         android:scaleType="fitXY"
         android:src="@drawable/not_video"
+        app:layout_constraintBottom_toTopOf="@id/barrier_middle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
 
-        android:contentDescription="@string/text_video_ib" />
+        app:layout_constraintTop_toBottomOf="@id/ContentTv" />
+
     <ImageButton
-        android:id="@+id/videoPlayIB"
+        android:id="@+id/VideoPlayIb"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="@id/videoIB"
-        app:layout_constraintEnd_toEndOf="@id/videoIB"
-        app:layout_constraintTop_toTopOf="@id/videoIB"
-        app:layout_constraintBottom_toBottomOf="@id/videoIB"
         android:background="@android:color/transparent"
+        android:contentDescription="@string/text_play_video_ib"
         android:src="@drawable/ic_play_video24dp"
+        app:layout_constraintBottom_toBottomOf="@id/VideoIb"
+        app:layout_constraintEnd_toEndOf="@id/VideoIb"
+        app:layout_constraintStart_toStartOf="@id/VideoIb"
+        app:layout_constraintTop_toTopOf="@id/VideoIb" />
 
-        android:contentDescription="@string/text_play_video_ib" />
+    <ImageView
+        android:id="@+id/AttachmentIv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:contentDescription="@string/text_attachment_iv"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@id/barrier_middle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ContentTv" />
 
 
     <androidx.constraintlayout.widget.Barrier
@@ -115,7 +128,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:barrierDirection="bottom"
-        app:constraint_referenced_ids="ContentTv,videoIB" />
+        app:constraint_referenced_ids="ContentTv,VideoIb,AttachmentIv" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/RepostIb"
@@ -151,7 +164,6 @@
         android:contentDescription="@string/str_ic_likes"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/barrier_middle" />
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

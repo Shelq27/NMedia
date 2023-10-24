@@ -1,6 +1,7 @@
 package ru.netology.nmedia.adapter
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.PopupMenu
 import androidx.recyclerview.widget.DiffUtil
@@ -9,10 +10,9 @@ import androidx.recyclerview.widget.RecyclerView
 import ru.netology.nmedia.R
 import ru.netology.nmedia.databinding.CardPostBinding
 import ru.netology.nmedia.dto.Post
-import java.math.RoundingMode
-import java.text.DecimalFormat
-import kotlin.math.floor
-import kotlin.math.log10
+import ru.netology.nmedia.util.AndroidUtils
+import ru.netology.nmedia.util.AndroidUtils.loadAttachment
+import ru.netology.nmedia.util.AndroidUtils.loadImg
 
 interface OnInteractionListener {
     fun onLike(post: Post)
@@ -40,22 +40,28 @@ class PostsAdapter(
     }
 }
 
-
 class PostViewHolder(
     private val binding: CardPostBinding, private val onInteraсtionListener: OnInteractionListener
 ) : RecyclerView.ViewHolder(binding.root) {
     fun bind(post: Post) {
+
         binding.apply {
 
 //            videoGroup.visibility = if (post.video.isNotEmpty()) {
 //                View.VISIBLE
 //            } else View.GONE
 
+
+            AvatarIv.loadImg("http://10.0.2.2:9999/avatars/${post.authorAvatar}")
+            if (post.attachment != null) {
+                AttachmentIv.loadAttachment("http://10.0.2.2:9999/images/${post.attachment!!.url}")
+                AttachmentIv.visibility = View.VISIBLE
+            } else AttachmentIv.visibility = View.GONE
             AuthorTv.text = post.author
             PublishedTv.text = post.published.toString()
             ContentTv.text = post.content
             LikeIb.isChecked = post.likedByMe
-            LikeIb.text = prettyCount(post.likes)
+            LikeIb.text = AndroidUtils.prettyCount(post.likes)
 //            RepostIb.text = prettyCount(post.reposted)
 //            ViewsIv.text = prettyCount(post.view)
             LikeIb.setOnClickListener {
@@ -65,14 +71,14 @@ class PostViewHolder(
             RepostIb.setOnClickListener {
                 onInteraсtionListener.onRepost(post)
             }
-            ContentTv.setOnClickListener{
-              onInteraсtionListener.onOpen(post)
+            ContentTv.setOnClickListener {
+                onInteraсtionListener.onOpen(post)
             }
-            videoIB.setOnClickListener {
+            VideoIb.setOnClickListener {
                 onInteraсtionListener.onPlay(post)
 
             }
-            videoPlayIB.setOnClickListener {
+            VideoPlayIb.setOnClickListener {
                 onInteraсtionListener.onPlay(post)
             }
             MenuIb.setOnClickListener {
@@ -110,18 +116,6 @@ class PostDiffCallback : DiffUtil.ItemCallback<Post>() {
 
 }
 
-fun prettyCount(numb: Int): String? {
-    val value = floor(log10(numb.toDouble())).toInt()
-    return when {
-        value < 3 -> numb.toString() // < 1000
-        value < 4 -> DecimalFormat("#.#").apply { roundingMode = RoundingMode.FLOOR }
-            .format(numb.toDouble() / 1000) + "K" // < 10_000
-        value < 6 -> DecimalFormat("#").apply { roundingMode = RoundingMode.FLOOR }
-            .format(numb.toDouble() / 1000) + "K" // < 1_000_000
-        else -> DecimalFormat("#.#").apply { roundingMode = RoundingMode.FLOOR }
-            .format(numb.toDouble() / 1_000_000) + "M"
-    }
-}
 
 
 

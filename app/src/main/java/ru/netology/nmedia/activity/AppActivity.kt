@@ -4,7 +4,6 @@ import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
-
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
@@ -16,12 +15,10 @@ import ru.netology.nmedia.databinding.ActivityAppBinding
 
 class AppActivity : AppCompatActivity() {
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val binding = ActivityAppBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         intent?.let { intent ->
             if (intent.action != Intent.ACTION_SEND) {
                 return@let
