@@ -91,6 +91,8 @@ class FeedFragment : Fragment() {
             binding.progress.isVisible = state.loading
             binding.errorGroup.isVisible = state.error
             binding.empty.isVisible = state.empty
+            binding.errorText.text = state.errorText
+
         }
         binding.retryButton.setOnClickListener{
             viewModel.loadPost()

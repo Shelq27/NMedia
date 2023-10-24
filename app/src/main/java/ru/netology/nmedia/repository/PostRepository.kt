@@ -8,7 +8,6 @@ interface PostRepository {
     fun unlikeByIdAsync(id: Long,callback: RepositoryCallback<Post>)
     fun removeByIdAsync(id:Long,callback: RepositoryCallback<Unit>)
     fun saveAsync(post:Post,callback: RepositoryCallback<Unit>)
-
 //    fun repostById(id: Long)
 
     interface RepositoryCallback<T>{

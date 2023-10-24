@@ -38,6 +38,7 @@ class NewPostFragment : Fragment() {
             viewModel.changeContentAndSave(content)
             viewModel.draft = null
             AndroidUtils.hideKeyboard(requireView())
+            findNavController().navigateUp()
         }
 
         requireActivity().onBackPressedDispatcher.addCallback(
@@ -48,10 +49,6 @@ class NewPostFragment : Fragment() {
                 }
             }
         )
-        viewModel.postCreated.observe(viewLifecycleOwner) {
-            viewModel.loadPost()
-            findNavController().navigateUp()
-        }
         return binding.root
 
     }

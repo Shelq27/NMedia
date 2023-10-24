@@ -7,5 +7,6 @@ data class FeedModel(
     val error: Boolean = false,
     val loading: Boolean = false,
     val refreshing: Boolean = false,
-    val empty: Boolean = false
+    val empty: Boolean = false,
+    val errorText: String = ""
 )
