@@ -25,6 +25,7 @@ class FeedFragment : Fragment() {
         var Bundle.text by StringArg
         var Bundle.id by idArg
     }
+
     private val viewModel: PostViewModel by activityViewModels()
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -32,9 +33,8 @@ class FeedFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         val binding = FragmentFeedBinding.inflate(inflater, container, false)
-
+        viewModel.loadPost()
         val adapter = PostsAdapter(object : OnInteractionListener {
-
 
             override fun onEdit(post: Post) {
 
@@ -91,8 +91,10 @@ class FeedFragment : Fragment() {
             binding.progress.isVisible = state.loading
             binding.errorGroup.isVisible = state.error
             binding.empty.isVisible = state.empty
+            binding.errorText.text = state.errorText
+
         }
-        binding.retryButton.setOnClickListener{
+        binding.retryButton.setOnClickListener {
             viewModel.loadPost()
         }
 

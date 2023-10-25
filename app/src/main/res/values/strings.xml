@@ -31,5 +31,10 @@
     <string name="internet_error">Internet Error</string>
     <string name="button_text_retry">retry</string>
     <string name="text_attachment_iv">Attachment Image</string>
+    <string name="like_error">Failed to like</string>
+    <string name="unlike_error">Couldn\'t remove the like</string>
+    <string name="remove_error">Failed to delete post</string>
+    <string name="save_error">Failed to save post</string>
+    <string name="load_error">Failed to load posts from the server</string>
 
 </resources>

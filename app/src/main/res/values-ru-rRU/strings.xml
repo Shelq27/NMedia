@@ -32,4 +32,9 @@
     <string name="internet_error">Ошибка сервера</string>
     <string name="button_text_retry">Обновить</string>
     <string name="text_attachment_iv">Изображение вложения</string>
+    <string name="like_error">Не удалось поставить лайк</string>
+    <string name="unlike_error">Не удалось убрать лайк</string>
+    <string name="remove_error">Не удалось удалить пост</string>
+    <string name="save_error">Не удалось сохранить пост</string>
+    <string name="load_error">Не удалось загрузить посты с сервера</string>
 </resources>
