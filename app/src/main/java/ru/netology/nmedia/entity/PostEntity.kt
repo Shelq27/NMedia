@@ -8,9 +8,9 @@ import ru.netology.nmedia.dto.Post
 data class PostEntity(
     @PrimaryKey(autoGenerate = true)
     val id: Long,
-    val author: String ,
+    val author: String,
     val content: String,
-    val published: Long ,
+    val published: Long,
     val likedByMe: Boolean,
     val likes: Int,
     val authorAvatar: String? = null,
@@ -18,7 +18,7 @@ data class PostEntity(
 //    val view: Int,
 //    val video: String,
 ) {
-    fun toDto() = Post(id, author, content, published, likedByMe ,likes, authorAvatar)
+    fun toDto() = Post(id, author, content, published, likedByMe, likes, authorAvatar)
 
     companion object {
         fun fromDto(post: Post) = PostEntity(
@@ -35,3 +35,6 @@ data class PostEntity(
         )
     }
 }
+
+fun List<PostEntity>.toDto(): List<Post> = map(PostEntity::toDto)
+fun List<Post>.toEntity(): List<PostEntity> = map(PostEntity::fromDto)

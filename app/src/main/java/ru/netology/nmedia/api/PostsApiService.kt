@@ -2,7 +2,7 @@ package ru.netology.nmedia.api
 
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
-import retrofit2.Call
+import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.Body
@@ -18,20 +18,24 @@ private const val BASE_URL = "${BuildConfig.BASE_URL}/api/slow/"
 
 interface PostsApiService {
     @GET("posts")
-    fun getAllAsync(): Call<List<Post>>
+    suspend fun getAll(): Response<List<Post>>
+
+    @GET("posts/{id}")
+    suspend fun getById(@Path("id") id: Long): Response<Post>
 
     @POST("posts/{id}/likes")
-    fun likeByIdAsync(@Path("id") id: Long): Call<Post>
+    suspend fun likeById(@Path("id") id: Long): Response<Post>
 
     @DELETE("posts/{id}/likes")
-    fun unlikeByIdAsync(@Path("id") id: Long): Call<Post>
+    suspend fun unlikeById(@Path("id") id: Long): Response<Post>
 
     @DELETE("posts/{id}")
-    fun removeByIdAsync(@Path("id") id: Long): Call<Unit>
+    suspend fun removeById(@Path("id") id: Long): Response<Unit>
 
     @POST("posts")
-    fun saveAsync(@Body post: Post): Call<Post>
+    suspend fun save(@Body post: Post): Response<Post>
 }
+
 
 val logger = HttpLoggingInterceptor().apply {
     if (BuildConfig.DEBUG) {
@@ -39,9 +43,8 @@ val logger = HttpLoggingInterceptor().apply {
 
     }
 }
-val client = OkHttpClient.Builder()
-    .addInterceptor(logger)
-    .build()
+val client = OkHttpClient.Builder().addInterceptor(logger).build()
+
 val retrofit = Retrofit.Builder()
     .addConverterFactory(GsonConverterFactory.create())
     .baseUrl(BASE_URL)
@@ -49,7 +52,7 @@ val retrofit = Retrofit.Builder()
     .build()
 
 object PostsApi {
-    val retrofitService by lazy {
+    val service by lazy {
         retrofit.create(PostsApiService::class.java)
     }
 }
