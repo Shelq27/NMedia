@@ -37,4 +37,7 @@
     <string name="remove_error">Не удалось удалить пост</string>
     <string name="save_error">Не удалось сохранить пост</string>
     <string name="load_error">Не удалось загрузить посты с сервера</string>
+    <string name="error_loading">Ошибка загрузки данных</string>
+    <string name="empty_posts">Сообщений нет.\\nЕсли вы создадите новое сообщение, оно появится здесь</string>
+    <string name="retry_loading">Повторить</string>
 </resources>

@@ -36,5 +36,8 @@
     <string name="remove_error">Failed to delete post</string>
     <string name="save_error">Failed to save post</string>
     <string name="load_error">Failed to load posts from the server</string>
+    <string name="error_loading">Data loading error</string>
+    <string name="empty_posts">There are no posts.\\nIf you create a new post, it will appear here</string>
+    <string name="retry_loading">Retry</string>
 
 </resources>

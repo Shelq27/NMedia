@@ -30,13 +30,13 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             manifestPlaceholders.clearTextTraffic = false
-            buildConfigField "String" , "BASE_URL", '"http://shelq/nmedia.ru"'
+            buildConfigField "String", "BASE_URL", '"http://shelq/nmedia.ru"'
         }
         debug {
             manifestPlaceholders.clearTextTraffic = true
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            buildConfigField "String" , "BASE_URL", '"http://10.0.2.2:9999"'
+            buildConfigField "String", "BASE_URL", '"http://10.0.2.2:9999"'
 
         }
     }
@@ -50,6 +50,7 @@ android {
 }
 
 dependencies {
+    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
     def core_version = "1.12.0"
     def appcompat_version = "1.6.1"
     def mdc_version = "1.9.0"
@@ -67,6 +68,7 @@ dependencies {
     def retrofit_version = "2.9.0"
     def retrofitgson_version = "2.9.0"
     def okhttplogging_version = "4.11.0"
+    def coroutines_version = "1.7.3"
     def play_services_base_version = "18.1.0"
 
 
@@ -84,6 +86,7 @@ dependencies {
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
     implementation "androidx.room:room-runtime:$room_version"
+    implementation "androidx.room:room-ktx:$room_version"
     kapt "androidx.room:room-compiler:$room_version"
     implementation platform("com.google.firebase:firebase-bom:$firebase_version")
     implementation "com.google.firebase:firebase-messaging-ktx"
@@ -92,6 +95,7 @@ dependencies {
     implementation "com.squareup.okhttp3:logging-interceptor:$okhttplogging_version"
     implementation "com.github.bumptech.glide:glide:$glide_version"
     implementation "com.google.android.gms:play-services-base:$play_services_base_version"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version"
 
 
     testImplementation "junit:junit:$junit_version"

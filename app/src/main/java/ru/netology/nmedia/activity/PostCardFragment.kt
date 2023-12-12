@@ -51,7 +51,7 @@ class PostCardFragment : Fragment() {
 //                } else View.GONE
 
                 LikeIb.setOnClickListener {
-                    viewModel.likeById(post.id)
+                    viewModel.likeByPost(post)
                 }
                 RepostIb.setOnClickListener {
                     viewModel.repostById(post.id)
