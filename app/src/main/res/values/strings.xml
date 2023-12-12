@@ -39,5 +39,6 @@
     <string name="error_loading">Data loading error</string>
     <string name="empty_posts">There are no posts.\\nIf you create a new post, it will appear here</string>
     <string name="retry_loading">Retry</string>
+    <string name="recent_recording">Recent recording</string>
 
 </resources>

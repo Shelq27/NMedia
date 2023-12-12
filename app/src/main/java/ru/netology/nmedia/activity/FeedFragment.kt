@@ -29,9 +29,7 @@ class FeedFragment : Fragment() {
 
     private val viewModel: PostViewModel by activityViewModels()
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         val binding = FragmentFeedBinding.inflate(inflater, container, false)
         viewModel.loadPost()
@@ -40,8 +38,7 @@ class FeedFragment : Fragment() {
             override fun onEdit(post: Post) {
 
                 findNavController().navigate(R.id.action_feedFragment_to_editPostFragment,
-                    Bundle().also { it.text = post.content }
-                )
+                    Bundle().also { it.text = post.content })
                 viewModel.edit(post)
             }
 
@@ -60,9 +57,9 @@ class FeedFragment : Fragment() {
             }
 
             override fun onOpen(post: Post) {
-                findNavController().navigate(R.id.action_feedFragment_to_postCardFragment,
-                    Bundle().also { it.id = post.id }
-                )
+                findNavController().navigate(
+                    R.id.action_feedFragment_to_postCardFragment,
+                    Bundle().also { it.id = post.id })
 
             }
 
@@ -87,18 +84,32 @@ class FeedFragment : Fragment() {
             binding.progress.isVisible = state.loading
             binding.swiperefresh.isRefreshing = state.refreshing
             if (state.error) {
-                Snackbar.make(binding.root, R.string.error_loading, Snackbar.LENGTH_LONG)
+                Snackbar.make(binding.root, R.string.error_loading, Snackbar.LENGTH_INDEFINITE)
                     .setAction(R.string.retry_loading) { viewModel.loadPost() }.show()
             }
         }
 
         viewModel.data.observe(viewLifecycleOwner) { state ->
-            adapter.submitList(state.posts)
+            val newPost = state.posts.size > adapter.currentList.size && adapter.itemCount > 0
+            adapter.submitList(state.posts) {
+                if (newPost) {
+                    binding.list.smoothScrollToPosition(0)
+                }
+            }
             binding.emptyText.isVisible = state.empty
         }
 
+        viewModel.newerCount.observe(viewLifecycleOwner) {
+            if (it > 0) {
+                binding.recentRecording.visibility = View.VISIBLE
+            }
+        }
+        binding.recentRecording.setOnClickListener {
+            viewModel.loadLocalDBPost()
+            binding.recentRecording.visibility = View.GONE
+            binding.list.smoothScrollToPosition(0)
 
-
+        }
         binding.swiperefresh.setOnRefreshListener {
             viewModel.refreshPosts()
         }
