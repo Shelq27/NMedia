@@ -83,6 +83,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:visibility="gone"
+        tools:visibility="visible"
         app:constraint_referenced_ids="VideoIb,VideoPlayIb" />
 
     <ImageButton
@@ -117,6 +118,7 @@
         android:adjustViewBounds="true"
         android:contentDescription="@string/text_attachment_iv"
         android:visibility="gone"
+        tools:visibility="visible"
         app:layout_constraintBottom_toTopOf="@id/barrier_middle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

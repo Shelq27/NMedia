@@ -9,7 +9,7 @@ data class Post(
     val likes: Int = 0,
     var authorAvatar: String? = "",
     val hidden:Boolean,
-    var attachment: Attachment? = null,
+    val attachment: Attachment? = null,
 //    val reposted: Int = 0,
 //    val view: Int = 0,
 //    val video:String= "",
@@ -19,6 +19,5 @@ data class Post(
 
 data class Attachment(
     val url: String,
-    val description: String,
-    val type: String
+    val type: AttachmentType
 )

@@ -11,8 +11,8 @@ import ru.netology.nmedia.R
 import ru.netology.nmedia.databinding.CardPostBinding
 import ru.netology.nmedia.dto.Post
 import ru.netology.nmedia.util.AndroidUtils
-import ru.netology.nmedia.util.AndroidUtils.loadAttachment
 import ru.netology.nmedia.util.AndroidUtils.loadImg
+import ru.netology.nmedia.util.AndroidUtils.loadImgAttachment
 
 interface OnInteractionListener {
     fun onLike(post: Post)
@@ -21,6 +21,7 @@ interface OnInteractionListener {
     fun onRemove(post: Post)
     fun onPlay(post: Post)
     fun onOpen(post: Post)
+    fun onOpenFullScreen(post: Post)
 
 }
 
@@ -54,7 +55,7 @@ class PostViewHolder(
 
             AvatarIv.loadImg("http://10.0.2.2:9999/avatars/${post.authorAvatar}")
             if (post.attachment != null) {
-                AttachmentIv.loadAttachment("http://10.0.2.2:9999/images/${post.attachment!!.url}")
+                AttachmentIv.loadImgAttachment("http://10.0.2.2:9999/media/${post.attachment.url}")
                 AttachmentIv.visibility = View.VISIBLE
             } else AttachmentIv.visibility = View.GONE
             AuthorTv.text = post.author
@@ -72,6 +73,9 @@ class PostViewHolder(
             }
             ContentTv.setOnClickListener {
                 onInteraсtionListener.onOpen(post)
+            }
+            AttachmentIv.setOnClickListener{
+                onInteraсtionListener.onOpenFullScreen(post)
             }
             VideoIb.setOnClickListener {
                 onInteraсtionListener.onPlay(post)

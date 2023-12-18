@@ -27,8 +27,7 @@ object AndroidUtils {
             .circleCrop()
             .into(this)
     }
-
-    fun ImageView.loadAttachment(url: String) {
+    fun ImageView.loadImgAttachment(url: String) {
         Glide.with(this)
             .load(url)
             .placeholder(R.drawable.ic_load_24dp)
@@ -36,6 +35,7 @@ object AndroidUtils {
             .timeout(30_0000)
             .into(this)
     }
+
 
     fun prettyCount(numb: Int): String? {
         val value = floor(log10(numb.toDouble())).toInt()

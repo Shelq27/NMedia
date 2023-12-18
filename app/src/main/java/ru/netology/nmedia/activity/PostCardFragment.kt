@@ -13,8 +13,8 @@ import ru.netology.nmedia.R
 import ru.netology.nmedia.activity.EditPostFragment.Companion.text
 import ru.netology.nmedia.databinding.FragmentCardPostBinding
 import ru.netology.nmedia.util.AndroidUtils
-import ru.netology.nmedia.util.AndroidUtils.loadAttachment
 import ru.netology.nmedia.util.AndroidUtils.loadImg
+import ru.netology.nmedia.util.AndroidUtils.loadImgAttachment
 import ru.netology.nmedia.util.idArg
 import ru.netology.nmedia.viewmodel.PostViewModel
 
@@ -41,7 +41,7 @@ class PostCardFragment : Fragment() {
                 LikeIb.text = AndroidUtils.prettyCount(post.likes)
                 AvatarIv.loadImg("http://10.0.2.2:9999/avatars/${post.authorAvatar}")
                 if (post.attachment != null) {
-                    AttachmentIv.loadAttachment("http://10.0.2.2:9999/images/${post.attachment!!.url}")
+                    AttachmentIv.loadImgAttachment("http://10.0.2.2:9999/avatars/${post.attachment.url}")
                     AttachmentIv.visibility = View.VISIBLE
                 } else AttachmentIv.visibility = View.GONE
 //                RepostIb.text = prettyCount(post.reposted)
