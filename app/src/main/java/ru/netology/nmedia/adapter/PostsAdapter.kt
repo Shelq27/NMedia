@@ -67,7 +67,6 @@ class PostViewHolder(
             LikeIb.setOnClickListener {
                 onInteraсtionListener.onLike(post)
             }
-
             RepostIb.setOnClickListener {
                 onInteraсtionListener.onRepost(post)
             }
