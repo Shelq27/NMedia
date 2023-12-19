@@ -24,7 +24,7 @@ class ImageFullScreenFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         val binding = FragmentImageFullScreenBinding.inflate(inflater, container, false)
         val viewModel: PostViewModel by activityViewModels()
         val postId = arguments?.id ?: -1
@@ -32,6 +32,7 @@ class ImageFullScreenFragment : Fragment() {
             val post = state.posts.find { it.id == postId } ?: return@observe
             with(binding) {
                 backIB.setOnClickListener {
+
                     findNavController().navigateUp()
                 }
                 menuIB.setOnClickListener {
@@ -47,7 +48,7 @@ class ImageFullScreenFragment : Fragment() {
 
                                 R.id.editPost -> {
                                     findNavController().navigate(
-                                        R.id.action_postCardFragment_to_editPostFragment,
+                                        R.id.action_imageFullScreenFragment_to_editPostFragment,
                                         Bundle().also { it.text = post.content })
                                     viewModel.edit(post)
                                     true
@@ -59,9 +60,13 @@ class ImageFullScreenFragment : Fragment() {
                     }.show()
                 }
                 imageFullScreen.loadImgAttachment("http://10.0.2.2:9999/media/${post.attachment?.url}")
+
                 LikeIb.setOnClickListener {
                     viewModel.likeByPost(post)
                 }
+                LikeIb.isChecked = post.likedByMe
+                LikeIb.text = AndroidUtils.prettyCount(post.likes)
+
                 shareIB.setOnClickListener {
                     viewModel.repostById(post.id)
                     val intent = Intent().apply {
@@ -70,12 +75,10 @@ class ImageFullScreenFragment : Fragment() {
                         type = "text/plain"
                     }
 
-                    val shareIntent =
-                        Intent.createChooser(intent, getString(R.string.chooser_share_post))
+                    val shareIntent = Intent.createChooser(intent, getString(R.string.chooser_share_post))
                     startActivity(shareIntent)
                 }
-                LikeIb.isChecked = post.likedByMe
-                LikeIb.text = AndroidUtils.prettyCount(post.likes)
+
             }
 
         }

@@ -42,7 +42,6 @@
             android:background="?selectableItemBackground"
             android:padding="@dimen/common_spacing"
             android:src="@drawable/ic_more_vert_24"
-
             app:tint="@color/white" />
     </LinearLayout>
 
@@ -72,9 +71,11 @@
             android:layout_weight="1"
             android:background="?selectableItemBackground"
             android:checkable="true"
+            app:iconGravity="textStart"
             android:contentDescription="@string/str_ic_likes"
             android:padding="@dimen/common_spacing"
             tools:ignore="NestedWeights" />
+
 
         <ImageButton
             android:id="@+id/commentIB"

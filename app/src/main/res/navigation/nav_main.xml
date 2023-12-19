@@ -64,5 +64,9 @@
         android:id="@+id/imageFullScreenFragment"
         android:name="ru.netology.nmedia.activity.ImageFullScreenFragment"
         android:label="fragment_image_full_screen"
-        tools:layout="@layout/fragment_image_full_screen" />
+        tools:layout="@layout/fragment_image_full_screen" >
+        <action
+            android:id="@+id/action_imageFullScreenFragment_to_editPostFragment"
+            app:destination="@id/editPostFragment" />
+    </fragment>
 </navigation>
