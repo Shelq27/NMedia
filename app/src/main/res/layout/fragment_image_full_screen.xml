@@ -1,0 +1,100 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activity.ImageFullScreenFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:layout_weight="0"
+        android:background="?colorPrimary"
+        android:backgroundTint="@color/black"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/backIB"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:background="?selectableItemBackground"
+            android:padding="@dimen/common_spacing"
+            android:src="@drawable/ic_arrow_back_24dp"
+            tools:ignore="NestedWeights" />
+
+        <TextView
+            android:id="@+id/numberOfImageTV"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center|start"
+            android:text="@string/text_number_of_photo"
+
+            android:textColor="@color/white" />
+
+        <ImageButton
+            android:id="@+id/menuIB"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:background="?selectableItemBackground"
+            android:padding="@dimen/common_spacing"
+            android:src="@drawable/ic_more_vert_24"
+            app:tint="@color/white" />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/image_full_screen"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:adjustViewBounds="true"
+        android:background="@color/black"
+        android:padding="@dimen/common_spacing"
+        tools:src="@tools:sample/avatars[11]" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:layout_weight="0"
+        android:background="?colorPrimary"
+        android:backgroundTint="@color/black"
+        android:orientation="horizontal">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/LikeIb"
+            style="@style/Widget.AppTheme.LikeButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="?selectableItemBackground"
+            android:checkable="true"
+            app:iconGravity="textStart"
+            android:contentDescription="@string/str_ic_likes"
+            android:padding="@dimen/common_spacing"
+            tools:ignore="NestedWeights" />
+
+
+        <ImageButton
+            android:id="@+id/commentIB"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="?selectableItemBackground"
+            android:padding="@dimen/common_spacing"
+            android:src="@drawable/ic_comment_24dp" />
+
+        <ImageButton
+            android:id="@+id/shareIB"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="?selectableItemBackground"
+            android:padding="@dimen/common_spacing"
+            android:src="@drawable/ic_repost" />
+    </LinearLayout>
+
+
+</LinearLayout>

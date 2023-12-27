@@ -41,5 +41,6 @@
     <string name="empty_posts">Сообщений нет.\\nЕсли вы создадите новое сообщение, оно появится здесь</string>
     <string name="retry_loading">Повторить</string>
     <string name="recent_recording">Свежие записи</string>
+    <string name="text_number_of_photo">1 из 1</string>
 
 </resources>

@@ -63,6 +63,13 @@ class FeedFragment : Fragment() {
 
             }
 
+            override fun onOpenFullScreen(post: Post) {
+                findNavController().navigate(
+                    R.id.action_feedFragment_to_imageFullScreenFragment,
+                    Bundle().also { it.id = post.id })
+
+            }
+
 
             override fun onRepost(post: Post) {
                 viewModel.repostById(post.id)
@@ -113,6 +120,7 @@ class FeedFragment : Fragment() {
         binding.swiperefresh.setOnRefreshListener {
             viewModel.refreshPosts()
         }
+
 
         binding.fab.setOnClickListener {
             findNavController().navigate(R.id.action_feedFragment_to_newPostFragment)

@@ -70,6 +70,7 @@ dependencies {
     def okhttplogging_version = "4.11.0"
     def coroutines_version = "1.7.3"
     def play_services_base_version = "18.1.0"
+    def imagepicker_version = "2.1"
 
 
     implementation fileTree(dir: "libs", include: ["*.jar"])
@@ -96,6 +97,7 @@ dependencies {
     implementation "com.github.bumptech.glide:glide:$glide_version"
     implementation "com.google.android.gms:play-services-base:$play_services_base_version"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version"
+    implementation "com.github.dhaval2404:imagepicker:$imagepicker_version"
 
 
     testImplementation "junit:junit:$junit_version"
