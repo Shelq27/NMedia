@@ -61,11 +61,11 @@ class ImageFullScreenFragment : Fragment() {
                 }
                 imageFullScreen.loadImgAttachment("http://10.0.2.2:9999/media/${post.attachment?.url}")
 
-                LikeIb.setOnClickListener {
+                likeIB.setOnClickListener {
                     viewModel.likeByPost(post)
                 }
-                LikeIb.isChecked = post.likedByMe
-                LikeIb.text = AndroidUtils.prettyCount(post.likes)
+                likeIB.isChecked = post.likedByMe
+                likeIB.text = AndroidUtils.prettyCount(post.likes)
 
                 shareIB.setOnClickListener {
                     viewModel.repostById(post.id)

@@ -14,6 +14,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:usesCleartextTraffic="${clearTextTraffic}"
+        android:name=".application.NMediaApplication"
         android:theme="@style/Theme.NMedia"
         tools:targetApi="31">
 

@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.PopupMenu
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -61,11 +62,11 @@ class PostViewHolder(
             AuthorTv.text = post.author
             PublishedTv.text = post.published.toString()
             ContentTv.text = post.content
-            LikeIb.isChecked = post.likedByMe
-            LikeIb.text = AndroidUtils.prettyCount(post.likes)
+            LikeIB.isChecked = post.likedByMe
+            LikeIB.text = AndroidUtils.prettyCount(post.likes)
 //            RepostIb.text = prettyCount(post.reposted)
 //            ViewsIv.text = prettyCount(post.view)
-            LikeIb.setOnClickListener {
+            LikeIB.setOnClickListener {
                 onInteraсtionListener.onLike(post)
             }
             RepostIb.setOnClickListener {
@@ -84,6 +85,7 @@ class PostViewHolder(
             VideoPlayIb.setOnClickListener {
                 onInteraсtionListener.onPlay(post)
             }
+            MenuIb.isVisible = post.ownedByMe
             MenuIb.setOnClickListener {
                 PopupMenu(it.context, it).apply {
                     inflate(R.menu.options_post)

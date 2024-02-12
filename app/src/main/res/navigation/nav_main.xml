@@ -30,6 +30,9 @@
         <action
             android:id="@+id/action_feedFragment_to_imageFullScreenFragment"
             app:destination="@id/imageFullScreenFragment" />
+        <action
+            android:id="@+id/action_feedFragment_to_signInFragment"
+            app:destination="@id/signInFragment" />
     </fragment>
     <fragment
         android:id="@+id/newPostFragment"
@@ -59,6 +62,9 @@
         <action
             android:id="@+id/action_postCardFragment_to_imageFullScreenFragment"
             app:destination="@id/imageFullScreenFragment" />
+        <action
+            android:id="@+id/action_postCardFragment_to_signInFragment"
+            app:destination="@id/signInFragment" />
     </fragment>
     <fragment
         android:id="@+id/imageFullScreenFragment"
@@ -69,4 +75,9 @@
             android:id="@+id/action_imageFullScreenFragment_to_editPostFragment"
             app:destination="@id/editPostFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/signInFragment"
+        android:name="ru.netology.nmedia.activity.SignInFragment"
+        android:label="fragment_sign_in"
+        tools:layout="@layout/fragment_sign_in" />
 </navigation>
