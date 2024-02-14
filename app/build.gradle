@@ -3,6 +3,8 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'org.jetbrains.kotlin.kapt'
     id 'com.google.gms.google-services'
+    id 'kotlin-kapt'
+    id 'com.google.dagger.hilt.android'
 
 }
 
@@ -72,6 +74,7 @@ dependencies {
     def coroutines_version = "1.7.3"
     def play_services_base_version = "18.1.0"
     def imagepicker_version = "2.1"
+    def hilt_version = "2.49"
 
 
     implementation fileTree(dir: "libs", include: ["*.jar"])
@@ -99,6 +102,8 @@ dependencies {
     implementation "com.google.android.gms:play-services-base:$play_services_base_version"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version"
     implementation "com.github.dhaval2404:imagepicker:$imagepicker_version"
+    implementation "com.google.dagger:hilt-android:$hilt_version"
+    kapt "com.google.dagger:hilt-compiler:$hilt_version"
 
 
     testImplementation "junit:junit:$junit_version"

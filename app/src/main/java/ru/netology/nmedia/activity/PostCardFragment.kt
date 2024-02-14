@@ -10,6 +10,7 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import dagger.hilt.android.AndroidEntryPoint
 import ru.netology.nmedia.R
 import ru.netology.nmedia.activity.EditPostFragment.Companion.text
 import ru.netology.nmedia.databinding.FragmentCardPostBinding
@@ -18,7 +19,7 @@ import ru.netology.nmedia.util.AndroidUtils.loadImg
 import ru.netology.nmedia.util.AndroidUtils.loadImgAttachment
 import ru.netology.nmedia.util.idArg
 import ru.netology.nmedia.viewmodel.PostViewModel
-
+@AndroidEntryPoint
 class PostCardFragment : Fragment() {
     companion object {
         var Bundle.id by idArg
