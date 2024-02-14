@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.PopupMenu
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
@@ -37,8 +38,8 @@ class PostCardFragment : Fragment() {
                 AuthorTv.text = post.author
                 PublishedTv.text = post.published.toString()
                 ContentTv.text = post.content
-                LikeIb.isChecked = post.likedByMe
-                LikeIb.text = AndroidUtils.prettyCount(post.likes)
+                LikeIB.isChecked = post.likedByMe
+                LikeIB.text = AndroidUtils.prettyCount(post.likes)
                 AvatarIv.loadImg("http://10.0.2.2:9999/avatars/${post.authorAvatar}")
                 if (post.attachment != null) {
                     AttachmentIv.loadImgAttachment("http://10.0.2.2:9999/avatars/${post.attachment.url}")
@@ -50,7 +51,7 @@ class PostCardFragment : Fragment() {
 //                    View.VISIBLE
 //                } else View.GONE
 
-                LikeIb.setOnClickListener {
+                LikeIB.setOnClickListener {
                     viewModel.likeByPost(post)
                 }
                 RepostIb.setOnClickListener {
@@ -74,6 +75,7 @@ class PostCardFragment : Fragment() {
 //                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(post.video))
 //                    startActivity(intent)
 //                }
+                MenuIb.isVisible = post.ownedByMe
                 MenuIb.setOnClickListener {
                     PopupMenu(it.context, it).apply {
                         inflate(R.menu.options_post)

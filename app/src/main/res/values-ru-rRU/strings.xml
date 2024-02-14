@@ -42,5 +42,10 @@
     <string name="retry_loading">Повторить</string>
     <string name="recent_recording">Свежие записи</string>
     <string name="text_number_of_photo">1 из 1</string>
+    <string name="sign_in">Войти</string>
+    <string name="sign_up">Регистрация</string>
+    <string name="sign_out">Выйти</string>
+    <string name="login">Логин</string>
+    <string name="password">Пароль</string>
 
 </resources>
