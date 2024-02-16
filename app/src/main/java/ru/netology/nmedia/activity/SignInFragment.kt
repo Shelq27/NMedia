@@ -12,15 +12,16 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import ru.netology.nmedia.databinding.FragmentSignInBinding
 import ru.netology.nmedia.util.AndroidUtils
 import ru.netology.nmedia.viewmodel.SignInViewModel
-
+@AndroidEntryPoint
 class SignInFragment : Fragment() {
 
-    private val viewModel by viewModels<SignInViewModel>()
+    private val viewModel : SignInViewModel by viewModels()
 
 
     override fun onCreateView(

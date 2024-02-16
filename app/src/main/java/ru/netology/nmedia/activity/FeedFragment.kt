@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
+import dagger.hilt.android.AndroidEntryPoint
 import ru.netology.nmedia.R
 import ru.netology.nmedia.adapter.OnInteractionListener
 import ru.netology.nmedia.adapter.PostsAdapter
@@ -20,7 +21,8 @@ import ru.netology.nmedia.util.idArg
 import ru.netology.nmedia.viewmodel.PostViewModel
 
 
-class FeedFragment : Fragment() {
+@AndroidEntryPoint
+class  FeedFragment : Fragment() {
 
     companion object {
         var Bundle.text by StringArg
