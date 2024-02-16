@@ -11,6 +11,7 @@
 //import androidx.fragment.app.activityViewModels
 //import androidx.navigation.fragment.findNavController
 //import dagger.hilt.android.AndroidEntryPoint
+//import kotlinx.coroutines.flow.collectLatest
 //import ru.netology.nmedia.R
 //import ru.netology.nmedia.activity.EditPostFragment.Companion.text
 //import ru.netology.nmedia.databinding.FragmentCardPostBinding
@@ -35,9 +36,6 @@
 //
 //        val postId = arguments?.id ?: -1
 //
-//
-//        viewModel.data.observe(viewLifecycleOwner) {
-//            val post = posts.find { it.id == postId } ?: return@observe
 //            with(binding.fragmentCardPost) {
 //                AuthorTv.text = post.author
 //                PublishedTv.text = post.published.toString()

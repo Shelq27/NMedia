@@ -10,6 +10,10 @@
 //import androidx.fragment.app.activityViewModels
 //import androidx.navigation.fragment.findNavController
 //import dagger.hilt.android.AndroidEntryPoint
+//import kotlinx.coroutines.flow.Flow
+//import kotlinx.coroutines.flow.collectLatest
+//import kotlinx.coroutines.flow.last
+//import kotlinx.coroutines.flow.observeOn
 //import ru.netology.nmedia.R
 //import ru.netology.nmedia.activity.EditPostFragment.Companion.text
 //import ru.netology.nmedia.databinding.FragmentImageFullScreenBinding
@@ -29,11 +33,11 @@
 //        val binding = FragmentImageFullScreenBinding.inflate(inflater, container, false)
 //        val viewModel: PostViewModel by activityViewModels()
 //        val postId = arguments?.id ?: -1
-//        viewModel.data.observe(viewLifecycleOwner) { state ->
-//            val post = state.posts.find { it.id == postId } ?: return@observe
+//
+//
+//
 //            with(binding) {
 //                backIB.setOnClickListener {
-//
 //                    findNavController().navigateUp()
 //                }
 //                menuIB.setOnClickListener {
