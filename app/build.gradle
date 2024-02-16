@@ -52,8 +52,7 @@ android {
 }
 
 dependencies {
-    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
-    implementation 'androidx.annotation:annotation:1.6.0'
+
     def core_version = "1.12.0"
     def appcompat_version = "1.6.1"
     def mdc_version = "1.9.0"
@@ -75,8 +74,10 @@ dependencies {
     def play_services_base_version = "18.1.0"
     def imagepicker_version = "2.1"
     def hilt_version = "2.49"
+    def paging_version = "3.1.0"
 
-
+    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
+    implementation 'androidx.annotation:annotation:1.6.0'
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "androidx.core:core-ktx:$core_version"
     implementation "androidx.appcompat:appcompat:$appcompat_version"
@@ -104,6 +105,8 @@ dependencies {
     implementation "com.github.dhaval2404:imagepicker:$imagepicker_version"
     implementation "com.google.dagger:hilt-android:$hilt_version"
     kapt "com.google.dagger:hilt-compiler:$hilt_version"
+    implementation "androidx.paging:paging-runtime-ktx:$paging_version"
+
 
 
     testImplementation "junit:junit:$junit_version"
