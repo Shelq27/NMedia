@@ -14,7 +14,6 @@ class PostPagingSource(
 
     override suspend fun load(params: LoadParams<Long>): LoadResult<Long, Post> {
         try {
-
             val result = when (params) {
                 is LoadParams.Refresh -> {
                     apiService.getLatest(params.loadSize)

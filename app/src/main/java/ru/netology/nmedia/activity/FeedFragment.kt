@@ -8,12 +8,14 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 import ru.netology.nmedia.R
 import ru.netology.nmedia.adapter.OnInteractionListener
 import ru.netology.nmedia.adapter.PostsAdapter
@@ -21,6 +23,7 @@ import ru.netology.nmedia.databinding.FragmentFeedBinding
 import ru.netology.nmedia.dto.Post
 import ru.netology.nmedia.util.StringArg
 import ru.netology.nmedia.util.idArg
+import ru.netology.nmedia.viewmodel.AuthViewModel
 import ru.netology.nmedia.viewmodel.PostViewModel
 
 
@@ -112,6 +115,13 @@ class FeedFragment : Fragment() {
 //                binding.recentRecording.visibility = View.VISIBLE
 //            }
 //        }
+
+        val authViewModel by viewModels<AuthViewModel>()
+        lifecycleScope.launch {
+            authViewModel.data.collectLatest {
+                adapter.refresh()
+            }
+        }
 
         binding.recentRecording.setOnClickListener {
             viewModel.loadLocalDBPost()
