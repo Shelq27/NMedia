@@ -78,9 +78,6 @@ class PostViewModel @Inject constructor(
         get() = _postCreated
     var draft: String? = null
 
-    init {
-        loadPost()
-    }
 
     fun setPhoto(uri: Uri, file: File) {
         _photo.value = PhotoModel(uri, file)

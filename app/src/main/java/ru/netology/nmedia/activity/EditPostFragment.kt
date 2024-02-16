@@ -25,7 +25,7 @@ class EditPostFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         val binding = FragmentEditPostBinding.inflate(layoutInflater)
         val viewModel: PostViewModel by activityViewModels()
@@ -64,7 +64,6 @@ class EditPostFragment : Fragment() {
             }
         )
         viewModel.postCreated.observe(viewLifecycleOwner) {
-            viewModel.loadPost()
             findNavController().navigateUp()
         }
         return binding.root

@@ -10,10 +10,7 @@
 //import androidx.fragment.app.activityViewModels
 //import androidx.navigation.fragment.findNavController
 //import dagger.hilt.android.AndroidEntryPoint
-//import kotlinx.coroutines.flow.Flow
-//import kotlinx.coroutines.flow.collectLatest
-//import kotlinx.coroutines.flow.last
-//import kotlinx.coroutines.flow.observeOn
+//
 //import ru.netology.nmedia.R
 //import ru.netology.nmedia.activity.EditPostFragment.Companion.text
 //import ru.netology.nmedia.databinding.FragmentImageFullScreenBinding

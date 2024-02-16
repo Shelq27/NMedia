@@ -37,7 +37,6 @@ class FeedFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         val binding = FragmentFeedBinding.inflate(inflater, container, false)
-        viewModel.loadPost()
         val adapter = PostsAdapter(object : OnInteractionListener {
 
             override fun onEdit(post: Post) {
@@ -97,7 +96,7 @@ class FeedFragment : Fragment() {
             binding.swiperefresh.isRefreshing = state.refreshing
             if (state.error) {
                 Snackbar.make(binding.root, R.string.error_loading, Snackbar.LENGTH_INDEFINITE)
-                    .setAction(R.string.retry_loading) { viewModel.loadPost() }.show()
+                    .setAction(R.string.retry_loading) { adapter.refresh() }.show()
             }
         }
 
@@ -113,6 +112,7 @@ class FeedFragment : Fragment() {
 //                binding.recentRecording.visibility = View.VISIBLE
 //            }
 //        }
+
         binding.recentRecording.setOnClickListener {
             viewModel.loadLocalDBPost()
             binding.recentRecording.visibility = View.GONE
@@ -135,7 +135,11 @@ class FeedFragment : Fragment() {
         binding.fab.setOnClickListener {
             findNavController().navigate(R.id.action_feedFragment_to_newPostFragment)
         }
+
+
         return binding.root
+
+
     }
 
 
