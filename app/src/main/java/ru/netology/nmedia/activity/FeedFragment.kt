@@ -8,9 +8,14 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.paging.LoadState
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 import ru.netology.nmedia.R
 import ru.netology.nmedia.adapter.OnInteractionListener
 import ru.netology.nmedia.adapter.PostsAdapter
@@ -18,11 +23,12 @@ import ru.netology.nmedia.databinding.FragmentFeedBinding
 import ru.netology.nmedia.dto.Post
 import ru.netology.nmedia.util.StringArg
 import ru.netology.nmedia.util.idArg
+import ru.netology.nmedia.viewmodel.AuthViewModel
 import ru.netology.nmedia.viewmodel.PostViewModel
 
 
 @AndroidEntryPoint
-class  FeedFragment : Fragment() {
+class FeedFragment : Fragment() {
 
     companion object {
         var Bundle.text by StringArg
@@ -34,7 +40,6 @@ class  FeedFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         val binding = FragmentFeedBinding.inflate(inflater, container, false)
-        viewModel.loadPost()
         val adapter = PostsAdapter(object : OnInteractionListener {
 
             override fun onEdit(post: Post) {
@@ -94,40 +99,57 @@ class  FeedFragment : Fragment() {
             binding.swiperefresh.isRefreshing = state.refreshing
             if (state.error) {
                 Snackbar.make(binding.root, R.string.error_loading, Snackbar.LENGTH_INDEFINITE)
-                    .setAction(R.string.retry_loading) { viewModel.loadPost() }.show()
+                    .setAction(R.string.retry_loading) { adapter.refresh() }.show()
             }
         }
 
-        viewModel.data.observe(viewLifecycleOwner) { state ->
-            val newPost = state.posts.size > adapter.currentList.size && adapter.itemCount > 0
-            adapter.submitList(state.posts) {
-                if (newPost) {
-                    binding.list.smoothScrollToPosition(0)
-                }
+        lifecycleScope.launchWhenCreated {
+            viewModel.data.collectLatest {
+                adapter.submitData(it)
             }
-            binding.emptyText.isVisible = state.empty
         }
 
-        viewModel.newerCount.observe(viewLifecycleOwner) {
-            if (it > 0) {
-                binding.recentRecording.visibility = View.VISIBLE
+
+//        viewModel.newerCount.observe(viewLifecycleOwner) {
+//            if (it > 0) {
+//                binding.recentRecording.visibility = View.VISIBLE
+//            }
+//        }
+
+        val authViewModel by viewModels<AuthViewModel>()
+        lifecycleScope.launch {
+            authViewModel.data.collectLatest {
+                adapter.refresh()
             }
         }
+
         binding.recentRecording.setOnClickListener {
             viewModel.loadLocalDBPost()
             binding.recentRecording.visibility = View.GONE
             binding.list.smoothScrollToPosition(0)
 
         }
+
+        lifecycleScope.launchWhenCreated {
+            adapter.loadStateFlow.collectLatest {
+                it.refresh is LoadState.Loading
+                        || it.append is LoadState.Loading
+                        || it.prepend is LoadState.Loading
+            }
+        }
         binding.swiperefresh.setOnRefreshListener {
-            viewModel.refreshPosts()
+            adapter.refresh()
         }
 
 
         binding.fab.setOnClickListener {
             findNavController().navigate(R.id.action_feedFragment_to_newPostFragment)
         }
+
+
         return binding.root
+
+
     }
 
 
