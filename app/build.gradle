@@ -66,7 +66,7 @@ dependencies {
     def nav_version = "2.7.2"
     def firebase_version = "32.3.1"
     def glide_version = "4.16.0"
-    def room_version = "2.6.0-alpha02"
+    def room_version = "2.6.0-alpha03"
     def retrofit_version = "2.9.0"
     def retrofitgson_version = "2.9.0"
     def okhttplogging_version = "4.11.0"
@@ -74,7 +74,7 @@ dependencies {
     def play_services_base_version = "18.1.0"
     def imagepicker_version = "2.1"
     def hilt_version = "2.49"
-    def paging_version = "3.1.0"
+    def paging_version = "3.2.0"
 
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
     implementation 'androidx.annotation:annotation:1.6.0'
@@ -93,6 +93,7 @@ dependencies {
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
     implementation "androidx.room:room-runtime:$room_version"
     implementation "androidx.room:room-ktx:$room_version"
+    implementation "androidx.room:room-paging:$room_version"
     kapt "androidx.room:room-compiler:$room_version"
     implementation platform("com.google.firebase:firebase-bom:$firebase_version")
     implementation "com.google.firebase:firebase-messaging-ktx"
