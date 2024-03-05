@@ -32,9 +32,8 @@
 //    ): View? {
 //        val binding = FragmentCardPostBinding.inflate(inflater, container, false)
 //        val viewModel: PostViewModel by activityViewModels()
-//
-//
 //        val postId = arguments?.id ?: -1
+//
 //
 //            with(binding.fragmentCardPost) {
 //                AuthorTv.text = post.author

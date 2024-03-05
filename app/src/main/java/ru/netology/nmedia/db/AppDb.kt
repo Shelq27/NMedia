@@ -5,11 +5,14 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import ru.netology.nmedia.dao.PostDao
+import ru.netology.nmedia.dao.PostRemoteKeyDao
 import ru.netology.nmedia.entity.PostEntity
+import ru.netology.nmedia.entity.PostRemoteKeyEntity
 
-@Database(entities = [PostEntity::class], version = 2)
+@Database(entities = [PostEntity::class, PostRemoteKeyEntity::class], version = 2)
 abstract class AppDb : RoomDatabase() {
-    abstract val PostDao: PostDao
+    abstract fun postDao(): PostDao
+    abstract fun postRemoteKeyDao(): PostRemoteKeyDao
 
     companion object {
 
