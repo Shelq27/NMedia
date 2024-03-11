@@ -93,9 +93,6 @@ class FeedFragment : Fragment() {
 
         })
         binding.list.adapter = adapter
-
-
-
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.data.collectLatest(adapter::submitData)
