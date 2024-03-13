@@ -34,7 +34,6 @@ class PostRemoteMediator(
                     } else {
                         apiService.getLatest(state.config.pageSize)
                     }
-                    apiService.getLatest(state.config.pageSize)
                 }
 
                 LoadType.PREPEND -> return MediatorResult.Success(endOfPaginationReached = true)
