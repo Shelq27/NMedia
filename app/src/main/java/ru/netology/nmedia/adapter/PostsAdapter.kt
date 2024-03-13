@@ -43,7 +43,7 @@ class PostsAdapter(
 }
 
 class PostViewHolder(
-    private val binding: CardPostBinding, private val onInteraсtionListener: OnInteractionListener
+    private val binding: CardPostBinding, private val onInteractionListener: OnInteractionListener
 ) : RecyclerView.ViewHolder(binding.root) {
     fun bind(post: Post) {
 
@@ -67,23 +67,23 @@ class PostViewHolder(
 //            RepostIb.text = prettyCount(post.reposted)
 //            ViewsIv.text = prettyCount(post.view)
             LikeIB.setOnClickListener {
-                onInteraсtionListener.onLike(post)
+                onInteractionListener.onLike(post)
             }
             RepostIb.setOnClickListener {
-                onInteraсtionListener.onRepost(post)
+                onInteractionListener.onRepost(post)
             }
             ContentTv.setOnClickListener {
-                onInteraсtionListener.onOpen(post)
+                onInteractionListener.onOpen(post)
             }
             AttachmentIv.setOnClickListener{
-                onInteraсtionListener.onOpenFullScreen(post)
+                onInteractionListener.onOpenFullScreen(post)
             }
             VideoIb.setOnClickListener {
-                onInteraсtionListener.onPlay(post)
+                onInteractionListener.onPlay(post)
 
             }
             VideoPlayIb.setOnClickListener {
-                onInteraсtionListener.onPlay(post)
+                onInteractionListener.onPlay(post)
             }
             MenuIb.isVisible = post.ownedByMe
             MenuIb.setOnClickListener {
@@ -92,12 +92,12 @@ class PostViewHolder(
                     setOnMenuItemClickListener { item ->
                         when (item.itemId) {
                             R.id.remove -> {
-                                onInteraсtionListener.onRemove(post)
+                                onInteractionListener.onRemove(post)
                                 true
                             }
 
                             R.id.editPost -> {
-                                onInteraсtionListener.onEdit(post)
+                                onInteractionListener.onEdit(post)
                                 true
                             }
 

@@ -1,19 +1,24 @@
 package ru.netology.nmedia.repository
 
+import androidx.paging.ExperimentalPagingApi
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
+import androidx.paging.map
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.flow.map
 import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.asRequestBody
 import retrofit2.Response
 import ru.netology.nmedia.api.PostsApiService
 import ru.netology.nmedia.auth.AuthState
 import ru.netology.nmedia.dao.PostDao
+import ru.netology.nmedia.dao.PostRemoteKeyDao
+import ru.netology.nmedia.db.AppDb
 import ru.netology.nmedia.dto.Attachment
 import ru.netology.nmedia.dto.AttachmentType
 import ru.netology.nmedia.dto.Media
@@ -32,14 +37,16 @@ import javax.inject.Inject
 class PostRepositoryImpl @Inject constructor(
     private val dao: PostDao,
     private val apiService: PostsApiService,
-    ) : PostRepository {
-    override val data = Pager(config = PagingConfig(pageSize = 10 , enablePlaceholders = false),
-        pagingSourceFactory = {
-            PostPagingSource(
-                apiService
-            )
-        }
-    ).flow
+    postRemoteKeyDao: PostRemoteKeyDao,
+    appDb: AppDb
+) : PostRepository {
+    @OptIn(ExperimentalPagingApi::class)
+    override val data = Pager(
+        config = PagingConfig(pageSize = 10, enablePlaceholders = false),
+        pagingSourceFactory = { dao.getPagingSource() },
+        remoteMediator = PostRemoteMediator(apiService, dao, postRemoteKeyDao, appDb)
+    ).flow.map { it.map(PostEntity::toDto) }
+
     override suspend fun getAll() {
         try {
             val response = apiService.getAll()
@@ -137,9 +144,7 @@ class PostRepositoryImpl @Inject constructor(
             dao.insert(body.map { it.copy(hidden = true) }.toEntity())
             emit(body.size)
         }
-    }
-        .catch { e -> throw AppError.from(e) }
-        .flowOn(Dispatchers.Default)
+    }.catch { e -> throw AppError.from(e) }.flowOn(Dispatchers.Default)
 
     override suspend fun saveWithAttachment(post: Post, photoModel: PhotoModel) {
         try {
@@ -149,14 +154,12 @@ class PostRepositoryImpl @Inject constructor(
             }
 
             val media = mediaResponse.body() ?: throw ApiError(
-                mediaResponse.code(),
-                mediaResponse.message()
+                mediaResponse.code(), mediaResponse.message()
             )
             val response = apiService.save(
                 post.copy(
                     attachment = Attachment(
-                        media.id,
-                        AttachmentType.IMAGE
+                        media.id, AttachmentType.IMAGE
                     )
                 )
             )
@@ -172,6 +175,7 @@ class PostRepositoryImpl @Inject constructor(
             throw UnknownError
         }
     }
+
 
     private suspend fun saveMedia(file: File): Response<Media> {
         val part = MultipartBody.Part.createFormData("file", file.name, file.asRequestBody())

@@ -76,6 +76,11 @@ class PostViewModel @Inject constructor(
     private val _postCreated = SingleLiveEvent<Unit>()
     val postCreated: LiveData<Unit>
         get() = _postCreated
+
+    private val _selectPost = MutableLiveData<Post>()
+
+
+
     var draft: String? = null
 
 
@@ -169,7 +174,6 @@ class PostViewModel @Inject constructor(
     fun clearPhoto() {
         _photo.value = null
     }
-
 
 }
 
