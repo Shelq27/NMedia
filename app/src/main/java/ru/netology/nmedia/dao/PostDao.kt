@@ -20,6 +20,7 @@ interface PostDao {
     @Query("UPDATE PostEntity SET hidden = 0 ")
     suspend fun hidden()
 
+
     @Query("SELECT COUNT(*) == 0 FROM PostEntity")
     suspend fun isEmpty(): Boolean
 

@@ -44,7 +44,7 @@ class PostRepositoryImpl @Inject constructor(
     override val data = Pager(
         config = PagingConfig(pageSize = 10, enablePlaceholders = false),
         pagingSourceFactory = { dao.getPagingSource() },
-        remoteMediator = PostRemoteMediator(apiService, dao,postRemoteKeyDao, appDb)
+        remoteMediator = PostRemoteMediator(apiService, dao, postRemoteKeyDao, appDb)
     ).flow.map { it.map(PostEntity::toDto) }
 
     override suspend fun getAll() {
@@ -175,6 +175,7 @@ class PostRepositoryImpl @Inject constructor(
             throw UnknownError
         }
     }
+
 
     private suspend fun saveMedia(file: File): Response<Media> {
         val part = MultipartBody.Part.createFormData("file", file.name, file.asRequestBody())

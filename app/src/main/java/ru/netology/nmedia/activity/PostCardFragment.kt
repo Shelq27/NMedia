@@ -12,8 +12,10 @@
 //import androidx.navigation.fragment.findNavController
 //import dagger.hilt.android.AndroidEntryPoint
 //import kotlinx.coroutines.flow.collectLatest
+//import kotlinx.coroutines.flow.map
 //import ru.netology.nmedia.R
 //import ru.netology.nmedia.activity.EditPostFragment.Companion.text
+//import ru.netology.nmedia.adapter.PostViewHolder
 //import ru.netology.nmedia.databinding.FragmentCardPostBinding
 //import ru.netology.nmedia.util.AndroidUtils
 //import ru.netology.nmedia.util.AndroidUtils.loadImg
@@ -32,9 +34,8 @@
 //    ): View? {
 //        val binding = FragmentCardPostBinding.inflate(inflater, container, false)
 //        val viewModel: PostViewModel by activityViewModels()
+//
 //        val postId = arguments?.id ?: -1
-//
-//
 //            with(binding.fragmentCardPost) {
 //                AuthorTv.text = post.author
 //                PublishedTv.text = post.published.toString()
