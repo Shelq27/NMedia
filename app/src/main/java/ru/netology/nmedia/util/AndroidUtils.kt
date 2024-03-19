@@ -18,7 +18,7 @@ object AndroidUtils {
         imm.hideSoftInputFromWindow(view.windowToken, 0)
     }
 
-    fun ImageView.loadImg(url: String) {
+    fun ImageView.loadImgCircle(url: String) {
         Glide.with(this)
             .load(url)
             .placeholder(R.drawable.ic_load_24dp)
@@ -27,7 +27,7 @@ object AndroidUtils {
             .circleCrop()
             .into(this)
     }
-    fun ImageView.loadImgAttachment(url: String) {
+    fun ImageView.loadImg(url: String) {
         Glide.with(this)
             .load(url)
             .placeholder(R.drawable.ic_load_24dp)
