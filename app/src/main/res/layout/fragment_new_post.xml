@@ -17,24 +17,23 @@
 
 
             <EditText
-                android:padding="@dimen/common_spacing"
                 android:id="@+id/edit"
-
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@android:color/transparent"
                 android:gravity="start|top"
                 android:inputType="textMultiLine"
+                android:padding="@dimen/common_spacing"
                 tools:text="@tools:sample/lorem[150]" />
 
             <FrameLayout
                 android:id="@+id/imageLoadContainer"
-                android:visibility="gone"
-                android:padding="@dimen/common_spacing"
-                tools:visibility="visible"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingBottom="?actionBarSize">
+                android:padding="@dimen/common_spacing"
+                android:paddingBottom="?actionBarSize"
+                android:visibility="gone"
+                tools:visibility="visible">
 
                 <ImageView
                     android:id="@+id/imageLoadPreview"
@@ -49,18 +48,17 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom|center_horizontal"
-                    android:text="@string/menu_remove"
-                    />
+                    android:text="@string/menu_remove" />
             </FrameLayout>
         </LinearLayout>
     </ScrollView>
 
     <LinearLayout
-        android:background="?colorPrimary"
         android:id="@+id/bottomAppBar"
         android:layout_width="match_parent"
         android:layout_height="?actionBarSize"
         android:layout_gravity="bottom"
+        android:background="?colorPrimary"
         android:gravity="center_vertical"
         android:orientation="horizontal">
 

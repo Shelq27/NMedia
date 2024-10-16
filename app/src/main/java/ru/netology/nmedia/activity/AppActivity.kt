@@ -77,6 +77,7 @@ class AppActivity : AppCompatActivity() {
             )
 
         }
+
         lifecycleScope.launch {
             lifecycle.repeatOnLifecycle(Lifecycle.State.RESUMED) {
                 viewModel.data.collect {

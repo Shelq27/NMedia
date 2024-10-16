@@ -59,7 +59,7 @@ class PostsAdapter(
 
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        when(val item = getItem(position)){
+        when (val item = getItem(position)) {
             is Ad -> (holder as? AdViewHolder)?.bind(item)
             is Post -> (holder as? PostViewHolder)?.bind(item)
             null -> error("unknown item type")
@@ -155,6 +155,7 @@ class PostDiffCallback : DiffUtil.ItemCallback<FeedItem>() {
     override fun areContentsTheSame(oldItem: FeedItem, newItem: FeedItem): Boolean {
         return oldItem == newItem
     }
+    
 
 }
 

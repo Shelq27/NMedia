@@ -74,7 +74,7 @@ class NewPostFragment : Fragment() {
             override fun onMenuItemSelected(menuItem: MenuItem): Boolean =
                 when (menuItem.itemId) {
                     R.id.save -> {
-                        fragmentBinding?.let {
+                        fragmentBinding.let {
                             val content = binding.edit.text.toString()
                             viewModel.changeContentAndSave(content)
                             viewModel.draft = null

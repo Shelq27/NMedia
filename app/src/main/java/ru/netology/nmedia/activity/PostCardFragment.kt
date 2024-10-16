@@ -19,7 +19,6 @@
 //import ru.netology.nmedia.databinding.FragmentCardPostBinding
 //import ru.netology.nmedia.util.AndroidUtils
 //import ru.netology.nmedia.util.AndroidUtils.loadImg
-//import ru.netology.nmedia.util.AndroidUtils.loadImgAttachment
 //import ru.netology.nmedia.util.AndroidUtils.prettyCount
 //import ru.netology.nmedia.util.idArg
 //import ru.netology.nmedia.viewmodel.PostViewModel
@@ -35,7 +34,13 @@
 //        val binding = FragmentCardPostBinding.inflate(inflater, container, false)
 //        val viewModel: PostViewModel by activityViewModels()
 //
-//        val postId = arguments?.id ?: -1
+//        val postId = arguments?.id ?:
+//
+//
+//        }
+//
+//
+//
 //            with(binding.fragmentCardPost) {
 //                AuthorTv.text = post.author
 //                PublishedTv.text = post.published.toString()

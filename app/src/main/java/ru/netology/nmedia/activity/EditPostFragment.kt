@@ -27,7 +27,7 @@ class EditPostFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
 
-        val binding = FragmentEditPostBinding.inflate(layoutInflater)
+        val binding = FragmentEditPostBinding.inflate(inflater, container, false)
         val viewModel: PostViewModel by activityViewModels()
 
         val text=arguments?.text
